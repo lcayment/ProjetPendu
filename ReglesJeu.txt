@@ -1,0 +1,9 @@
+Le Pendu est un jeu consistant à trouver un mot en devinant quelles sont les lettres qui le composent. 
+Le jeu se joue à deux. Tu peux choisir si tu souhaites deviner le mot que l'ordinateur a choisi, ou bien si tu souhaites faire
+deviner le mot à l'ordinateur.
+
+Tu souhaites deviner le mot que l'ordinateur a choisi ? 
+Tu peux proposer jusqu'à 11 lettres, c'est à dire autant de traits qui peuvent être tracés pour dessiner le pendu.Dépassé ces 11 tentatives,
+tu as perdu.
+Tu dois également trouver et proposer au moins un mot dans ces 11 tentatives. Si le mot est juste, tu as gagné, dans le cas inverse,
+tu perds directement, que tes 11 tentatives soient épuisées ou non. Alors fais bien attention lorsque tu proposes un mot. 

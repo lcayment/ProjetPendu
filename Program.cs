@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace ProjetPendu
 {
@@ -145,11 +146,47 @@ namespace ProjetPendu
             return ("mot");
         }
 
+        public static void OuvrirFichier(string ReglesJeu)
+        {
+            try
+            {
+                Console.WriteLine("\nOuverture du fichier : " + ReglesJeu);
+
+                // Création d'une instance de StreamReader pour permettre la lecture de notre fichier 
+                System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
+                StreamReader monStreamReader = new StreamReader(ReglesJeu, encoding);
+
+
+                Console.Write("Lecture des règles, veuillez patienter...");
+
+                string mot = monStreamReader.ReadLine();
+
+                // Lecture de tous les mots du dictionnaire (un par lignes) 
+                while (mot != null)
+                {
+                   mot = monStreamReader.ReadLine();
+
+                }
+                // Fermeture du StreamReader (attention très important) 
+                monStreamReader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                // Code exécuté en cas d'exception 
+                Console.Write("Une erreur est survenue au cours de la lecture :");               
+            }
+        }
+
+     
+
         static void Main(string[] args)
         {
             Console.WriteLine("Bienvenue sur notre jeu de pendu");
+           
 
-            
+
         }
     }
 }

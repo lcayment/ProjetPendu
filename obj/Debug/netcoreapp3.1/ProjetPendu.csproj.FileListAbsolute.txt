@@ -11,3 +11,16 @@ C:\Users\Lucie Vautier\Documents\00_ENSC\00_Cours\02_Programmation\ProjetPendu\o
 C:\Users\Lucie Vautier\Documents\00_ENSC\00_Cours\02_Programmation\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.dll
 C:\Users\Lucie Vautier\Documents\00_ENSC\00_Cours\02_Programmation\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.pdb
 C:\Users\Lucie Vautier\Documents\00_ENSC\00_Cours\02_Programmation\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.genruntimeconfig.cache
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\bin\Debug\netcoreapp3.1\ProjetPendu.exe
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\bin\Debug\netcoreapp3.1\ProjetPendu.deps.json
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\bin\Debug\netcoreapp3.1\ProjetPendu.runtimeconfig.json
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\bin\Debug\netcoreapp3.1\ProjetPendu.runtimeconfig.dev.json
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\bin\Debug\netcoreapp3.1\ProjetPendu.dll
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\bin\Debug\netcoreapp3.1\ProjetPendu.pdb
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.csprojAssemblyReference.cache
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.AssemblyInfoInputs.cache
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.AssemblyInfo.cs
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.csproj.CoreCompileInputs.cache
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.dll
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.pdb
+C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\obj\Debug\netcoreapp3.1\ProjetPendu.genruntimeconfig.cache

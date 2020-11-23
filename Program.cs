@@ -80,12 +80,41 @@ namespace ProjetPendu
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : int NbJoueursHumains prend la valeur 0 si l'ordinateur joue contre lui-même, 1 le joueur joue contre l'ordinateur, 2 deux joueurs humains jouent l'un contre l'autre
             */
+            Console.WriteLine("Combien de joueur? ");
+            int NbJoueurHumain = int.Parse(Console.ReadLine());
+            
+            if (NbJoueurHumain==0)
+            {
+                Console.WriteLine("L'ordinateur joue seul :'(");
+            }
+            else if (NbJoueurHumain==1)
+            {
+                Console.WriteLine("Vous jouez contre l'ordinateur.");
+            }
+            else if (NbJoueurHumain>1)
+            {
+                Console.WriteLine("Vous jouerez contre un autre joueur.");
+            }
 
-            return 1;
+                return 1;
         }
 
         public static int ChoixRoles ()
         {
+
+            Console.WriteLine("Si souhaites deviner le mot que l'ordinateur a choisi : tape 0");
+            Console.WriteLine("Si tu souhaites faire le mot à l'ordinateur : tape 1");
+            int modejeu = int.Parse(Console.ReadLine());
+
+            if (modejeu==0)
+            {
+                Console.WriteLine("Tu as choisi de deviner le mot que l'ordinateur a choisi");
+            }
+            else
+            {
+                Console.WriteLine("Tu as choisi de faire deviner un mot à l'ordinateur");
+
+            }
             /* Nom : ChoixRoles
             * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet de choisir le mode de jeu
             * Paramètre(s) d'entrée : aucun
@@ -119,7 +148,8 @@ namespace ProjetPendu
         static void Main(string[] args)
         {
             Console.WriteLine("Bienvenue sur notre jeu de pendu");
-	    	
+
+            
         }
     }
 }

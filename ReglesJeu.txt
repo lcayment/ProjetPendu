@@ -7,3 +7,9 @@ Tu peux proposer jusqu'à 11 lettres, c'est à dire autant de traits qui peuvent
 tu as perdu.
 Tu dois également trouver et proposer au moins un mot dans ces 11 tentatives. Si le mot est juste, tu as gagné, dans le cas inverse,
 tu perds directement, que tes 11 tentatives soient épuisées ou non. Alors fais bien attention lorsque tu proposes un mot. 
+
+Tu souhaites faire deviner ton mot à l'ordinateur ? 
+Rentre un mot valide du dictionnaire et laisse l'ordinateur proposer une lettre ou un mot. L'ordinateur a 11 tentatives tout comme toi.
+C'est à toi de dire si l'ordinateur si sa proposition est just ou fausse. Au delà de 11 tentatives. L'ordinateur perd.
+
+Alors près à jouer ? 

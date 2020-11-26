@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ProjetPendu
 {
+    /* THIS CLASS CONTAINS ALL PROCEDURES */
     class Procedures
     {
         public static void AfficherRegles()

@@ -81,23 +81,40 @@ namespace ProjetPendu
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : int NbJoueursHumains prend la valeur 0 si l'ordinateur joue contre lui-même, 1 le joueur joue contre l'ordinateur, 2 deux joueurs humains jouent l'un contre l'autre
             */
-            Console.WriteLine("Combien de joueurs ? ");
-            int NbJoueurHumain = int.Parse(Console.ReadLine());
+
+            int NbJoueurHumain = 0;
+            string stNbJoueurHumain = "";
+            bool IsOk = false;
+            do
+            {
+                Console.WriteLine("Combien de joueurs ?");
+                stNbJoueurHumain = Console.ReadLine();
+                IsOk = int.TryParse(stNbJoueurHumain, out NbJoueurHumain);
+            } while (!IsOk || NbJoueurHumain < 0);
             
-            if (NbJoueurHumain==0)
+            if (NbJoueurHumain == 0)
             {
                 Console.WriteLine("L'ordinateur joue seul :'(");
+                return NbJoueurHumain;
+
             }
-            else if (NbJoueurHumain==1)
+            else if (NbJoueurHumain == 1)
             {
                 Console.WriteLine("Vous jouez contre l'ordinateur.");
+                return NbJoueurHumain;
+
             }
-            else if (NbJoueurHumain>1)
+            else if (NbJoueurHumain == 2)
             {
                 Console.WriteLine("Vous jouerez contre un autre joueur.");
+                return NbJoueurHumain;
+
+            }
+            else
+            {
+                return -1;
             }
 
-                return 1;
         }
 
         public static int ChoixRoles ()
@@ -170,13 +187,17 @@ namespace ProjetPendu
             Console.WriteLine("Bienvenue sur notre jeu de pendu");
             int NbJoueursHumains;
 
+            // AFFICHAGE DES REGLES //
             AfficherRegles();
 
+            // CHOIX DU NOMBRES DE JOUEURS //
             NbJoueursHumains = ChoixNbJoueurs();
-            if ((NbJoueursHumains == 1)||(NbJoueursHumains == 2))      // Ordinateur contre humain ou humain contre humain
+            if (NbJoueursHumains == 1)     // Ordinateur contre humain 
             {
                 ChoixRoles();
             }
+
+
 
 
         }

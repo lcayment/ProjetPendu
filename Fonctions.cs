@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ProjetPendu
 {
+    /* THIS CLASS CONTAINS ALL FONCTIONS */
     class Fonctions
     {
         public static bool VerifMotHumain(string MotADeviner)

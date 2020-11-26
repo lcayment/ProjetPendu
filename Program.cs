@@ -81,7 +81,7 @@ namespace ProjetPendu
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : int NbJoueursHumains prend la valeur 0 si l'ordinateur joue contre lui-même, 1 le joueur joue contre l'ordinateur, 2 deux joueurs humains jouent l'un contre l'autre
             */
-            Console.WriteLine("Combien de joueur? ");
+            Console.WriteLine("Combien de joueurs ? ");
             int NbJoueurHumain = int.Parse(Console.ReadLine());
             
             if (NbJoueurHumain==0)
@@ -104,7 +104,7 @@ namespace ProjetPendu
         {
 
             Console.WriteLine("Si souhaites deviner le mot que l'ordinateur a choisi : tape 0");
-            Console.WriteLine("Si tu souhaites faire le mot à l'ordinateur : tape 1");
+            Console.WriteLine("Si tu souhaites faire deviner le mot à l'ordinateur : tape 1");
             int modejeu = int.Parse(Console.ReadLine());
 
             if (modejeu==0)
@@ -146,36 +146,20 @@ namespace ProjetPendu
             return ("mot");
         }
 
-        public static void OuvrirFichier(string ReglesJeu)
+        public static void AfficherRegles()
         {
+            string text = System.IO.File.ReadAllText(@"C:\Users\Lucie Vautier\Documents\00_ENSC\00_Cours\02_Programmation\ProjetPendu\Tools\ReglesJeu.txt");
+   
             try
             {
-                Console.WriteLine("\nOuverture du fichier : " + ReglesJeu);
-
-                // Création d'une instance de StreamReader pour permettre la lecture de notre fichier 
-                System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("iso-8859-1");
-                StreamReader monStreamReader = new StreamReader(ReglesJeu, encoding);
-
-
-                Console.Write("Lecture des règles, veuillez patienter...");
-
-                string mot = monStreamReader.ReadLine();
-
-                // Lecture de tous les mots du dictionnaire (un par lignes) 
-                while (mot != null)
-                {
-                   mot = monStreamReader.ReadLine();
-
-                }
-                // Fermeture du StreamReader (attention très important) 
-                monStreamReader.Close();
-
+                // Display the file contents to the console. Variable text is a string.
+                System.Console.WriteLine(text);
 
             }
             catch (Exception ex)
             {
                 // Code exécuté en cas d'exception 
-                Console.Write("Une erreur est survenue au cours de la lecture :");               
+                Console.Write("Une erreur est survenue au cours de la lecture des règles");               
             }
         }
 
@@ -184,7 +168,15 @@ namespace ProjetPendu
         static void Main(string[] args)
         {
             Console.WriteLine("Bienvenue sur notre jeu de pendu");
-           
+            int NbJoueursHumains;
+
+            AfficherRegles();
+
+            NbJoueursHumains = ChoixNbJoueurs();
+            if ((NbJoueursHumains == 1)||(NbJoueursHumains == 2))      // Ordinateur contre humain ou humain contre humain
+            {
+                ChoixRoles();
+            }
 
 
         }

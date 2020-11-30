@@ -13,6 +13,7 @@ namespace ProjetPendu
             int Roles = -1;
             int ChoixDebut, ChoixPartie;
             string MotADeviner = "null";
+            bool MotDansDictionnaire = false;
 
             // DEBUT DE PARTIE
             do
@@ -54,8 +55,13 @@ namespace ProjetPendu
                 {
                     if (Roles == 1) // L'ORDINATEUR DEVINE
                     {
-                        Console.WriteLine("Veuillez rentrer un mot que l'ordinateur doit deviner :");
-                        MotADeviner = Console.ReadLine();
+                        do
+                        {
+                            MotADeviner = Fonctions.ChoixMotHumain();
+                            
+                            MotDansDictionnaire = Fonctions.VerifMotHumain(MotADeviner);
+                        } while (!MotDansDictionnaire);
+                        
                     }
                     else if (Roles == 0)    //LE JOUEUR HUMAIN DEVINE
                     {

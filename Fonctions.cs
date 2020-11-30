@@ -14,7 +14,7 @@ namespace ProjetPendu
              * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par le joueur humain
              * Variable de retour : bool MotDansDictionnaire prend la valeur true quand le mot est dans le dictionnaire et false quand le mot est absent du dictionnaire
             */
-
+            Console.WriteLine("Vérification du mot ...");
 
             return false;
         }
@@ -52,6 +52,20 @@ namespace ProjetPendu
             */
 
             return ("test");
+        }
+
+        public static string ChoixMotHumain()
+        {
+            /* Nom : ChoixMotHumain
+            * Objectif : Retourne un mot selectionné par le joueur humain (MotChoisi) dans le fichier DICOfr.txt
+            * Paramètre(s) d'entrée : aucun
+            * Variable de retour : string MotChoisi correspond au mot selectionné par le joueur
+            */
+            string MotChoisi;
+            Console.WriteLine("Veuillez écrire un mot sans accent, en majuscules, présent dans le dictionnaire");
+            MotChoisi = Console.ReadLine();
+
+            return MotChoisi;
         }
 
         public static int ChoixNbJoueurs()

@@ -1,0 +1,9 @@
+*/.vs
+*/.json
+*/.exe
+*/.dll
+*/.pdb
+*/.props
+*/.targets
+*/.cache
+/obj/

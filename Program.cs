@@ -45,8 +45,10 @@ namespace ProjetPendu
                 Console.WriteLine("Tapez 0 pour abandonner !");
                 Console.WriteLine("Tapez 1 pour continuer la partie !");
                 ChoixPartie = int.Parse(Console.ReadLine());
+                MotADeviner = Fonctions.ChoixMotOrdi();
+                Console.WriteLine(MotADeviner);
 
-                if (ChoixPartie == 0)           // La partie est abandonnée
+                /*if (ChoixPartie == 0)           // La partie est abandonnée
                 {
                     Procedures.PartieAbandonnee(MotADeviner);
                 }
@@ -67,14 +69,13 @@ namespace ProjetPendu
                     {
                         Console.WriteLine("Erreur dans l'attributuion des rôles");
                     }
-                }
-                
+                }*/
+
             } while (ChoixPartie != 0);
 
-            
 
-            
 
+            //NOMBRE TENTATIVES RESTANTES
 
 
 

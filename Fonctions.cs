@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace ProjetPendu
 {
@@ -19,7 +20,7 @@ namespace ProjetPendu
             return false;
         }
 
-
+        //LOLO
         public static int VerifierLettre(char Lettre)
         {
             /* Nom : VerifierLettre
@@ -43,6 +44,7 @@ namespace ProjetPendu
             return false;
         }
 
+        //LOLO
         public static string ChoixMotOrdi()
         {
             /* Nom : ChoixMotOrdi
@@ -51,7 +53,26 @@ namespace ProjetPendu
             * Variable de retour : string MotChoisi correspond au mot selectionné par l'ordinateur
             */
 
-            return ("test");
+            /*Premier essaie pour récupérer le fichier, stocker toutes les lignes dans un tableau mais on s'est rendu
+            Compte que ça allait prendre beaucoup de place 
+            using (StreamReader reader = new StreamReader(@"C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\Tools\dicoFR.txt"))*/
+
+            //Creer une variable RandomMot et un tableau[] SecretMotOrdi contenant tout le dico pour choisir mot random dedans
+            //Random rand = new Random();
+            //RandomMot = 1;
+
+
+            //==> Recupération du fichier dicoFR et selection d'une ligne random puis l'afficher.
+
+            var lines = File.ReadAllLines(@"C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\Tools\dicoFR.txt");
+            var r = new Random();
+            var randomLineNumber = r.Next(0, lines.Length - 1);
+            var line = lines[randomLineNumber];
+
+
+
+            Console.WriteLine("ChoixMotOrdi = "+line);
+            return line;
         }
 
         public static int ChoixNbJoueurs()

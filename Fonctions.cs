@@ -16,7 +16,7 @@ namespace ProjetPendu
              * Variable de retour : bool MotDansDictionnaire prend la valeur true quand le mot est dans le dictionnaire et false quand le mot est absent du dictionnaire
             */
             Console.WriteLine("Vérification du mot ...");
-
+            // TODO
 
             return false;
         }
@@ -54,24 +54,13 @@ namespace ProjetPendu
             * Variable de retour : string MotChoisi correspond au mot selectionné par l'ordinateur
             */
 
-            /*Premier essaie pour récupérer le fichier, stocker toutes les lignes dans un tableau mais on s'est rendu
-            Compte que ça allait prendre beaucoup de place 
-            using (StreamReader reader = new StreamReader(@"C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\Tools\dicoFR.txt"))*/
-
-            //Creer une variable RandomMot et un tableau[] SecretMotOrdi contenant tout le dico pour choisir mot random dedans
-            //Random rand = new Random();
-            //RandomMot = 1;
-
-
-            //==> Recupération du fichier dicoFR et selection d'une ligne random puis l'afficher.
-
+            // Recupération du fichier dicoFR et selection d'une ligne random puis affichage
             var lines = File.ReadAllLines(@"..\..\..\Tools\dicoFR.txt");
             var r = new Random();
             var randomLineNumber = r.Next(0, lines.Length - 1);
-            var line = lines[randomLineNumber];
+            var MotChoisi = lines[randomLineNumber];
 
-            Console.WriteLine("ChoixMotOrdi = "+line);
-            return line;
+            return MotChoisi;
         }
 
         public static string ChoixMotHumain()
@@ -81,6 +70,7 @@ namespace ProjetPendu
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : string MotChoisi correspond au mot selectionné par le joueur
             */
+
             string MotChoisi;
             Console.WriteLine("Veuillez écrire un mot sans accent, en majuscules, présent dans le dictionnaire");
             MotChoisi = Console.ReadLine();

@@ -49,21 +49,17 @@ namespace ProjetPendu
                 MotADeviner = Fonctions.ChoixMotOrdi();
                 Console.WriteLine(MotADeviner);
 
-                /*if (ChoixPartie == 0)           // La partie est abandonnée
-                {
-                    Procedures.PartieAbandonnee(MotADeviner);
-                }
-                else
+                if (ChoixPartie == 1)           // La partie est abandonnée
                 {
                     if (Roles == 1) // L'ORDINATEUR DEVINE
                     {
                         do
                         {
                             MotADeviner = Fonctions.ChoixMotHumain();
-                            
+
                             MotDansDictionnaire = Fonctions.VerifMotHumain(MotADeviner);
                         } while (!MotDansDictionnaire);
-                        
+
                     }
                     else if (Roles == 0)    //LE JOUEUR HUMAIN DEVINE
                     {
@@ -75,7 +71,11 @@ namespace ProjetPendu
                     {
                         Console.WriteLine("Erreur dans l'attributuion des rôles");
                     }
-                }*/
+                }
+                else
+                {
+                    Procedures.PartieAbandonnee(MotADeviner);
+                }
 
             } while (ChoixPartie != 0);
 

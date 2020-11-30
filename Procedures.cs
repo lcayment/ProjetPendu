@@ -15,7 +15,6 @@ namespace ProjetPendu
             {
                 // Display the file contents to the console. Variable text is a string.
                 System.Console.WriteLine(text);
-
             }
             catch (Exception ex)
             {
@@ -42,6 +41,7 @@ namespace ProjetPendu
              * Paramètre(s) d'entrée : aucun
              * Variable de retour : void
             */
+
             Console.WriteLine("Vous avez décidé d'abandonner la partie !");
             Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
             Console.WriteLine("Dommage !");

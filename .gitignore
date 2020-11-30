@@ -1,4 +1,6 @@
-*/.vs
+/.vs/
+/bin/
+/obj/
 */.json
 */.exe
 */.dll
@@ -6,4 +8,3 @@
 */.props
 */.targets
 */.cache
-/obj/

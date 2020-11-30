@@ -65,12 +65,10 @@ namespace ProjetPendu
 
             //==> Recupération du fichier dicoFR et selection d'une ligne random puis l'afficher.
 
-            var lines = File.ReadAllLines(@"C:\Users\Lottie\Desktop\ENSC\S5\PROJETS\ProjetPendu\Tools\dicoFR.txt");
+            var lines = File.ReadAllLines(@"..\..\..\Tools\dicoFR.txt");
             var r = new Random();
             var randomLineNumber = r.Next(0, lines.Length - 1);
             var line = lines[randomLineNumber];
-
-
 
             Console.WriteLine("ChoixMotOrdi = "+line);
             return line;
@@ -112,19 +110,16 @@ namespace ProjetPendu
             {
                 Console.WriteLine("L'ordinateur joue seul :'(");
                 return NbJoueurHumain;
-
             }
             else if (NbJoueurHumain == 1)
             {
                 Console.WriteLine("Vous jouez contre l'ordinateur.");
                 return NbJoueurHumain;
-
             }
             else if (NbJoueurHumain == 2)
             {
                 Console.WriteLine("Vous jouerez contre un autre joueur.");
                 return NbJoueurHumain;
-
             }
             else
             {

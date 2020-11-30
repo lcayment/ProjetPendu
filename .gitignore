@@ -1,10 +1,2 @@
-.vs/
-bin/
-obj/
-*.json
-*.exe
-*.dll
-*.pdb
-*.props
-*.targets
-*.cache
+*~
+parameters.txt

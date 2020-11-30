@@ -35,13 +35,30 @@ namespace ProjetPendu
 
         }
 
-        public static void PartieAbandonnee()
+        public static void PartieAbandonnee(string MotADeviner)
         {
             /* Nom : PartieAbandonnee
              * Objectif :  Affiche "Abandon partie !" + le mot à deviner + dessin du pendu
              * Paramètre(s) d'entrée : aucun
              * Variable de retour : void
             */
+            Console.WriteLine("Vous avez décidé d'abandonner la partie !");
+            Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
+            Console.WriteLine("Dommage !");
+            string text = System.IO.File.ReadAllText(@"C:\Users\Lucie Vautier\Documents\00_ENSC\00_Cours\02_Programmation\ProjetPendu\Tools\DessinPendu.txt");
+
+            try
+            {
+                // Display the file contents to the console. Variable text is a string.
+                System.Console.WriteLine(text);
+
+            }
+            catch (Exception ex)
+            {
+                // Code exécuté en cas d'exception 
+                Console.Write("Une erreur est survenue au cours de l'affichage du pendu");
+            }
+
         }
     }
 }

@@ -99,26 +99,26 @@ namespace ProjetPendu
 
         public static int ChoixRoles()
         {
-
-            Console.WriteLine("Si souhaites deviner le mot que l'ordinateur a choisi : tape 0");
-            Console.WriteLine("Si tu souhaites faire deviner le mot à l'ordinateur : tape 1");
-            int modejeu = int.Parse(Console.ReadLine());
-
-            if (modejeu == 0)
-            {
-                Console.WriteLine("Tu as choisi de deviner le mot que l'ordinateur a choisi");
-            }
-            else
-            {
-                Console.WriteLine("Tu as choisi de faire deviner un mot à l'ordinateur");
-
-            }
             /* Nom : ChoixRoles
             * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet de choisir le mode de jeu
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : int Modejeu prend la valeur 0 si le joueur humain devine le mot ou la valeur 1 si l'ordinateur devine
             */
-            return 1;
+            Console.WriteLine("Si souhaites deviner le mot que l'ordinateur a choisi : tape 0");
+            Console.WriteLine("Si tu souhaites faire deviner le mot à l'ordinateur : tape 1");
+            int ModeJeu = int.Parse(Console.ReadLine());
+
+            if (ModeJeu == 0)
+            {
+                Console.WriteLine("Tu as choisi de deviner le mot que l'ordinateur a choisi");
+                return ModeJeu;
+            }
+            else
+            {
+                Console.WriteLine("Tu as choisi de faire deviner un mot à l'ordinateur");
+                return ModeJeu;
+            }
+
         }
 
         public static char PropositionLettreOrdi()

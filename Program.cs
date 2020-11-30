@@ -46,7 +46,7 @@ namespace ProjetPendu
                 Console.WriteLine("Tapez 1 pour continuer la partie !");
                 ChoixPartie = int.Parse(Console.ReadLine());
 
-                if (ChoixPartie == 0)
+                if (ChoixPartie == 0)           // La partie est abandonnée
                 {
                     Procedures.PartieAbandonnee(MotADeviner);
                 }

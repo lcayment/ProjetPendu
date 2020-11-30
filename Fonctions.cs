@@ -16,6 +16,7 @@ namespace ProjetPendu
             */
             Console.WriteLine("Vérification du mot ...");
 
+
             return false;
         }
 

@@ -9,7 +9,7 @@ namespace ProjetPendu
     {
         public static void AfficherRegles()
         {
-            string text = System.IO.File.ReadAllText(@"C:\Users\Lucie Vautier\Documents\00_ENSC\00_Cours\02_Programmation\ProjetPendu\Tools\ReglesJeu.txt");
+            string text = System.IO.File.ReadAllText(@"C:\ProjetPendu\Tools\ReglesJeu.txt");
 
             try
             {
@@ -45,7 +45,7 @@ namespace ProjetPendu
             Console.WriteLine("Vous avez décidé d'abandonner la partie !");
             Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
             Console.WriteLine("Dommage !");
-            string text = System.IO.File.ReadAllText(@"C:\Users\Lucie Vautier\Documents\00_ENSC\00_Cours\02_Programmation\ProjetPendu\Tools\DessinPendu.txt");
+            string text = System.IO.File.ReadAllText(@"C:\ProjetPendu\Tools\DessinPendu.txt");
 
             try
             {

@@ -41,16 +41,41 @@ namespace ProjetPendu
         }
 
         //LOLO
-        public static int VerifierLettre(char Lettre)
+        public static int VerifierLettre(char Lettre, string MotChoisi)
         {
             /* Nom : VerifierLettre
              * Objectif : Verifie si la lettre (Lettre) est juste, fausse ou a deja été donnée
              * Paramètre(s) d'entrée : char Lettre = lettre proposée par le joueur (humain ou ordinateur)
              * Variable de retour : int EtatLettre prend la valeur 0 si la lettre fausse ou la valeur 1 si la lettre juste ou la valeur -1 si la lettre déjà donnée
             */
+            int EtatLettre = 0;
+            bool Lettreok=false;
+            
+            
+            for (int i=0;i<MotChoisi.Length;i++)
+            {
+                if (Lettreok == false)
+                {
+                    if (MotChoisi[i] == Lettre)
+                    {
+                        EtatLettre = 1;
+                        Lettreok = true;
+                        Console.WriteLine(Lettreok);
+                    }
+                    //Pour l'instant on dit simplement si la lettre est dans le mot ou non
+                    else
+                    {
+                        EtatLettre = 0;
+                        //Après voir lettre=-1 pour dire que la lettre a déjà été donné
 
-
-            return 0;
+                    }
+                    Console.WriteLine("EtatLettre =" + EtatLettre);
+                }
+                                
+            }
+            
+            
+            return EtatLettre;
         }
 
         public static bool VerifierMot(string MotDonne, string MotADeviner)
@@ -61,6 +86,7 @@ namespace ProjetPendu
                                       string MotADeviner = mot choisi par l'ordinateur ou le joueur humain comme mot à deviner
             * Variable de retour : bool MotJuste prend la valeur true si le mot est juste (victoire) ou la valeur false si le mot est faux (défaite : affichage pendu + mot à deviner)
             */
+
             return false;
         }
 

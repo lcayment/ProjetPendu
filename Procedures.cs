@@ -23,13 +23,16 @@ namespace ProjetPendu
             }
         }
 
-        public static void AfficherMotADeviner(char NouvelleLettre)
+        //LOLO
+        public static void AfficherMotADeviner(char NouvelleLettre, char Motchoisi)
         {
             /* Nom : AfficherMotADeviner
              * Objectif :  A chaque tour, affiche le mot à deviner avec la nouvelle lettre donnée par l'utilisateur (NouvelleLettre)
              * Paramètre(s) d'entrée : char NouvelleLettre correspond à la lettre proposée par le joueur (humain ou ordinateur)
              * Variable de retour : void
+             * Afficher toutes les mêmes du mot si elle est proposé et présente plusieurs fois dans le mot
             */
+
 
 
         }

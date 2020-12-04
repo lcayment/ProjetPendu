@@ -52,7 +52,7 @@ namespace ProjetPendu
             int EtatLettre = 0;
             bool Lettreok = false;
               
-            for (int i=0;i<MotChoisi.Length;i++)
+            for (int i = 0; i < MotChoisi.Length; i++)
             {
                 if (Lettreok == false)          // Si la lettre a deja été trouvée, on ne refait pas de test
                 {
@@ -196,6 +196,38 @@ namespace ProjetPendu
 
         }
 
+        public static char PropositionLettreHumain()
+        {
+            /* Nom : PropositionLettreHumain
+            * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'humain de proposer une lettre
+            * Paramètre(s) d'entrée : aucun
+            * Variable de retour : char Lettre correspond à la lettre de retour venant de l'humain
+            */
+
+            char Lettre;
+
+            Console.WriteLine("Proposez une lettre en majuscules et sans accent :");
+            Lettre = char.Parse(Console.ReadLine());                        // L'utilisateur propose une lettre
+            
+            return (Lettre);
+        }
+
+        public static string PropositionMotHumain()
+        {
+            /* Nom : PropositionMotHumain
+            * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'humain de proposer un mot
+            * Paramètre(s) d'entrée : aucun
+            * Variable de retour : string Mot correspond au mot de retour venant de l'humain
+            */
+
+            string MotPropose;
+
+            Console.WriteLine("Proposez un mot en majuscules et sans accent :");
+            MotPropose = Console.ReadLine();                        // L'utilisateur propose une lettre
+
+            return (MotPropose);
+        }
+
         public static char PropositionLettreOrdi()
         {
             /* Nom : PropositionLettreOrdi
@@ -218,6 +250,63 @@ namespace ProjetPendu
             return ("mot");
         }
 
+        public static int ActionsTour()
+        {
+            /* Nom : ActionsTour
+             * Objectif :  Permet de centraliser les actions de chaque tour
+             * Paramètre(s) d'entrée : null
+             * Variable de retour : int ChoixPartie qui correspond à l'action selectionnée
+            */
+
+            int ChoixPartie;
+
+            Console.WriteLine("\nChoississez une action : ");
+            Console.WriteLine("Tapez 0 pour abandonner !");
+            Console.WriteLine("Tapez 1 pour afficher les règles !");
+            Console.WriteLine("Tapez 2 pour continuer la partie !");
+
+            ChoixPartie = int.Parse(Console.ReadLine());
+
+            return ChoixPartie;
+        }
+
+        public static int DebutPartie(out int NbJoueursHumains)
+        {
+            /* Nom : DebutPartie
+             * Objectif :  Permet de centraliser les actiosn de début de partie, à savoir l'affichage des règles et le nombre de joueurs
+             * Paramètre(s) d'entrée : out int NbJoueursHumains est le paramètre qui sera récupéré qui correspond au nombre de joueurs humains
+             * Variable de retour : int Roles qui correspond au role choisi au sein du jeu (je devine ou je fais deviner)
+            */
+
+            int ChoixDebut;
+            int Roles = -1;
+            NbJoueursHumains = -1;
+
+            do
+            {
+                Console.WriteLine("Choississez une action : ");
+                Console.WriteLine("Tapez 1 pour afficher les règles !");
+                Console.WriteLine("Tapez 2 pour commencer la partie !");
+                ChoixDebut = int.Parse(Console.ReadLine());
+
+                if (ChoixDebut == 1)
+                {
+                    // AFFICHAGE DES REGLES //
+                    Procedures.AfficherRegles();
+                }
+                else if (ChoixDebut == 2)
+                {
+                    // CHOIX DU NOMBRES DE JOUEURS //
+                    NbJoueursHumains = Fonctions.ChoixNbJoueurs();
+                    if (NbJoueursHumains == 1)     // Ordinateur contre humain 
+                    {
+                        Roles = Fonctions.ChoixRoles();
+                    }
+                }
+            } while (ChoixDebut != 2);
+
+            return Roles;
+        }
 
     }
 }

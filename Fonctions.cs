@@ -15,10 +15,29 @@ namespace ProjetPendu
              * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par le joueur humain
              * Variable de retour : bool MotDansDictionnaire prend la valeur true quand le mot est dans le dictionnaire et false quand le mot est absent du dictionnaire
             */
-            Console.WriteLine("Vérification du mot ...");
-            // TODO
+            bool MotDansDictionnaire = false;
+            string textFile = @"..\..\..\Tools\dicoFR.txt";
 
-            return false;
+            string[] lines = File.ReadAllLines(textFile);
+            do
+            {
+                foreach (string line in lines)      // Action a faire à chaque ligne 
+                {
+                    Console.WriteLine(line);
+                    Console.WriteLine(MotADeviner);
+                    /*if (MotADeviner == line)
+                    {
+                        MotDansDictionnaire = true;
+                        Console.WriteLine("Mot OK !");
+                    }
+                    else
+                    {
+                        MotDansDictionnaire = false;
+                    }*/
+                }
+            } while (!MotDansDictionnaire);
+            
+            return MotDansDictionnaire;
         }
 
         //LOLO
@@ -72,9 +91,16 @@ namespace ProjetPendu
             */
 
             string MotChoisi;
-            Console.WriteLine("Veuillez écrire un mot sans accent, en majuscules, présent dans le dictionnaire");
-            MotChoisi = Console.ReadLine();
+            bool MotDansDictionnaire;
+            // Tant que le mot donné n'est pas dans le dictionnaire, il faut en redonner un 
+            do
+            {
+                Console.WriteLine("Veuillez écrire un mot sans accent, en majuscules, présent dans le dictionnaire");
+                MotChoisi = Console.ReadLine();
 
+                MotDansDictionnaire = VerifMotHumain(MotChoisi);          // permet de vérifier si le mot choisi est bien dans le dictionnaire
+            } while (!MotDansDictionnaire);
+            
             return MotChoisi;
         }
 

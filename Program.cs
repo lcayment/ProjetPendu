@@ -15,6 +15,8 @@ namespace ProjetPendu
             string MotADeviner = "null";
             bool MotDansDictionnaire = false;
             bool MotDonné = false;
+            char Lettre;
+            int EtatLettre;
 
             // DEBUT DE PARTIE
             do
@@ -63,20 +65,28 @@ namespace ProjetPendu
                         {
                             MotADeviner = Fonctions.ChoixMotHumain();
 
-                            MotDansDictionnaire = Fonctions.VerifMotHumain(MotADeviner);
+                            //MotDansDictionnaire = Fonctions.VerifMotHumain(MotADeviner);
                         } while (!MotDansDictionnaire);
-
+                       
                     }
                     else if (Roles == 0)    // LE JOUEUR HUMAIN DEVINE
                     {
                         Console.WriteLine("Proposez une lettre ou un mot :");
+                        Lettre = char.Parse(Console.ReadLine());
                         // TODO
+                        
+                        EtatLettre = Fonctions.VerifierLettre(Lettre, MotADeviner);
                     }
                     else
                     {
                         Console.WriteLine("Erreur dans l'attributuion des rôles");
                     }
                 }
+                
+                
+
+
+
                 // PARTIE ABANDONNE 
                 else
                 {

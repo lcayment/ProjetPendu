@@ -13,7 +13,7 @@ namespace ProjetPendu
 
             try
             {
-                // Display the file contents to the console. Variable text is a string.
+                // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
             }
             catch (Exception ex)
@@ -23,7 +23,6 @@ namespace ProjetPendu
             }
         }
 
-        //LOLO
         public static void AfficherMotADeviner(int EtatLettre, string MotChoisi, char Lettre)
         {
             /* Nom : AfficherMotADeviner
@@ -33,12 +32,12 @@ namespace ProjetPendu
              * Afficher toutes les mêmes du mot si elle est proposé et présente plusieurs fois dans le mot
              * Recuperer EtatLettre
             */
+
             if (EtatLettre==0)
             {
                 for (int i = 0; i < MotChoisi.Length; i++)
                 {
                     Console.Write("_ ");
-
                 }
             }
             else if (EtatLettre==1)
@@ -50,16 +49,13 @@ namespace ProjetPendu
                     if (Lettre == MotChoisi[i])
                     {
                         Console.Write(Lettre);
-
                     }
                     else
                     {
                         Console.Write("_ ");
                     }
-
                 }
             }
-
         }
 
         public static void PartieAbandonnee(string MotADeviner)
@@ -77,7 +73,7 @@ namespace ProjetPendu
 
             try
             {
-                // Display the file contents to the console. Variable text is a string.
+                // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
 
             }

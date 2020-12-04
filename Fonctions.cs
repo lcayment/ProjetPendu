@@ -17,21 +17,21 @@ namespace ProjetPendu
             */
 
             bool MotDansDictionnaire = false;
-            string textFile = @"..\..\..\Tools\dicoFR.txt";
+            string textFile = @"..\..\..\Tools\dicoFR.txt";     // correspond au chemin relatif du dictionnaire
 
+            // Chaque ligne du fichier va être lue et être comparée au mot donné en paramètre
             string[] lines = File.ReadAllLines(textFile);
+
             foreach (string line in lines)      // Action a faire à chaque ligne 
             {
-                if (!MotDansDictionnaire)
+                if (!MotDansDictionnaire)       // Si le mot est dans le dictionnaire les tests ne sons pas refait
                 {
-                    if (MotADeviner == line)
+                    if (MotADeviner == line)        // Le mot est en effet dans le dictionnaire
                     {
                         MotDansDictionnaire = true;
                         Console.WriteLine("Mot OK !");
-                        Console.WriteLine(line);
-                        Console.WriteLine(MotADeviner);
                     }
-                    else
+                    else                           // Le mot n'est pas dans le dictionnaire
                     {
                         MotDansDictionnaire = false;
                     }
@@ -49,10 +49,12 @@ namespace ProjetPendu
              * Paramètre(s) d'entrée : char Lettre = lettre proposée par le joueur (humain ou ordinateur)
              * Variable de retour : int EtatLettre prend la valeur 0 si la lettre fausse ou la valeur 1 si la lettre juste ou la valeur -1 si la lettre déjà donnée
             */
+
             int EtatLettre = 0;
             bool Lettreok = false;
               
-            for (int i = 0; i < MotChoisi.Length; i++)
+            // On parcourt le mot choisi (qui est un tableau de char) pour comparer chaque lettre du mot avec la lettre donnée
+            for (int i = 0; i < MotChoisi.Length; i++)  
             {
                 if (Lettreok == false)          // Si la lettre a deja été trouvée, on ne refait pas de test
                 {
@@ -61,7 +63,7 @@ namespace ProjetPendu
                         EtatLettre = 1;         // La lettre est juste
                         Lettreok = true;        // On ne reteste pas le mot, on attend la fin de la boucle for
                     }
-                    //Pour l'instant on dit simplement si la lettre est dans le mot ou non
+                    // TODO :Pour l'instant on dit simplement si la lettre est dans le mot ou non
                     else
                     {
                         EtatLettre = 0;
@@ -70,6 +72,7 @@ namespace ProjetPendu
                     }
                 }                   
             }
+            // Affichage
             if (EtatLettre == 1)
             {
                 Console.WriteLine("La lettre est juste !");
@@ -78,6 +81,7 @@ namespace ProjetPendu
             {
                 Console.WriteLine("La lettre est fausse ...");
             }
+
             return EtatLettre;
         }
 
@@ -102,11 +106,10 @@ namespace ProjetPendu
             * Variable de retour : string MotChoisi correspond au mot selectionné par l'ordinateur
             */
 
-            // Recupération du fichier dicoFR et selection d'une ligne random puis affichage
-            var lines = File.ReadAllLines(@"..\..\..\Tools\dicoFR.txt");
-            var r = new Random();
-            var randomLineNumber = r.Next(0, lines.Length - 1);
-            var MotChoisi = lines[randomLineNumber];
+            var lines = File.ReadAllLines(@"..\..\..\Tools\dicoFR.txt");        // On recupere le nombre de lines dans le dictionnaire
+            var r = new Random();                                               // On crée un objet random
+            var randomLineNumber = r.Next(0, lines.Length - 1);                 // On sélectionne une ligne random
+            var MotChoisi = lines[randomLineNumber];                            // On lit le mot associé à la ligne
 
             return MotChoisi;
         }
@@ -121,6 +124,7 @@ namespace ProjetPendu
 
             string MotChoisi;
             bool MotDansDictionnaire;
+
             // Tant que le mot donné n'est pas dans le dictionnaire, il faut en redonner un 
             do
             {
@@ -143,6 +147,8 @@ namespace ProjetPendu
             int NbJoueurHumain = 0;
             string stNbJoueurHumain = "";
             bool IsOk = false;
+
+            // Tant que le nombre de joueurs donné n'est pas valide, on redemande un nombre de joueurs
             do
             {
                 Console.WriteLine("Combien de joueurs ?");
@@ -150,6 +156,7 @@ namespace ProjetPendu
                 IsOk = int.TryParse(stNbJoueurHumain, out NbJoueurHumain);
             } while (!IsOk || NbJoueurHumain < 0);
 
+            // Selon le nombre de joueurs, un mode différent est lancé
             if (NbJoueurHumain == 0)
             {
                 Console.WriteLine("L'ordinateur joue seul :'(");
@@ -164,10 +171,6 @@ namespace ProjetPendu
             {
                 Console.WriteLine("Vous jouerez contre un autre joueur.");
                 return NbJoueurHumain;
-            }
-            else
-            {
-                return -1;
             }
 
         }
@@ -207,7 +210,7 @@ namespace ProjetPendu
             char Lettre;
 
             Console.WriteLine("Proposez une lettre en majuscules et sans accent :");
-            Lettre = char.Parse(Console.ReadLine());                        // L'utilisateur propose une lettre
+            Lettre = char.Parse(Console.ReadLine());    // L'utilisateur propose une lettre
             
             return (Lettre);
         }
@@ -223,7 +226,7 @@ namespace ProjetPendu
             string MotPropose;
 
             Console.WriteLine("Proposez un mot en majuscules et sans accent :");
-            MotPropose = Console.ReadLine();                        // L'utilisateur propose une lettre
+            MotPropose = Console.ReadLine();      // L'utilisateur propose un  mot
 
             return (MotPropose);
         }
@@ -291,12 +294,12 @@ namespace ProjetPendu
 
                 if (ChoixDebut == 1)
                 {
-                    // AFFICHAGE DES REGLES //
+                    // --------------- Affichage des règles --------------- //
                     Procedures.AfficherRegles();
                 }
                 else if (ChoixDebut == 2)
                 {
-                    // CHOIX DU NOMBRES DE JOUEURS //
+                    // ------------ Choix du nombre de joueurs ------------ //
                     NbJoueursHumains = Fonctions.ChoixNbJoueurs();
                     if (NbJoueursHumains == 1)     // Ordinateur contre humain 
                     {

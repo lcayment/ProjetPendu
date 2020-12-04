@@ -49,45 +49,34 @@ namespace ProjetPendu
                 Console.WriteLine("Tapez 0 pour abandonner !");
                 Console.WriteLine("Tapez 1 pour continuer la partie !");
                 ChoixPartie = int.Parse(Console.ReadLine());
+
                 if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
                 {
                     MotADeviner = Fonctions.ChoixMotOrdi();
                     MotDonné = true;
                 }
-                // Console.WriteLine(MotADeviner);      
 
                 // LA PARTIE CONTINUE 
                 if (ChoixPartie == 1)          
                 {
                     if (Roles == 1)     // L'ORDINATEUR DEVINE
                     {
-                        do
-                        {
-                            MotADeviner = Fonctions.ChoixMotHumain();
-
-                            //MotDansDictionnaire = Fonctions.VerifMotHumain(MotADeviner);
-                        } while (!MotDansDictionnaire);
-                       
+                        MotADeviner = Fonctions.ChoixMotHumain();
                     }
                     else if (Roles == 0)    // LE JOUEUR HUMAIN DEVINE
                     {
-                        Console.WriteLine("Proposez une lettre ou un mot :");
-                        Lettre = char.Parse(Console.ReadLine());
-                        // TODO
-                        
-                        EtatLettre = Fonctions.VerifierLettre(Lettre, MotADeviner);
+                        Console.WriteLine("Proposez une lettre ou un mot en majuscules et sans accent :");
+                        Lettre = char.Parse(Console.ReadLine());                        // L'utilisateur propose une lettre
+                        EtatLettre = Fonctions.VerifierLettre(Lettre, MotADeviner);     // On vérifie si la lettre est présente dans le mot
+                        // TODO : Affichermot
                     }
                     else
                     {
                         Console.WriteLine("Erreur dans l'attributuion des rôles");
                     }
                 }
-                
-                
 
-
-
-                // PARTIE ABANDONNE 
+                // LA PARTIE EST ABANDONNEE
                 else
                 {
                     Procedures.PartieAbandonnee(MotADeviner);

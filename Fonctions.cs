@@ -15,27 +15,28 @@ namespace ProjetPendu
              * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par le joueur humain
              * Variable de retour : bool MotDansDictionnaire prend la valeur true quand le mot est dans le dictionnaire et false quand le mot est absent du dictionnaire
             */
+
             bool MotDansDictionnaire = false;
             string textFile = @"..\..\..\Tools\dicoFR.txt";
 
             string[] lines = File.ReadAllLines(textFile);
-            do
+            foreach (string line in lines)      // Action a faire à chaque ligne 
             {
-                foreach (string line in lines)      // Action a faire à chaque ligne 
+                if (!MotDansDictionnaire)
                 {
-                    Console.WriteLine(line);
-                    Console.WriteLine(MotADeviner);
-                    /*if (MotADeviner == line)
+                    if (MotADeviner == line)
                     {
                         MotDansDictionnaire = true;
                         Console.WriteLine("Mot OK !");
+                        Console.WriteLine(line);
+                        Console.WriteLine(MotADeviner);
                     }
                     else
                     {
                         MotDansDictionnaire = false;
-                    }*/
-                }
-            } while (!MotDansDictionnaire);
+                    }
+                }       
+            }
             
             return MotDansDictionnaire;
         }
@@ -125,7 +126,6 @@ namespace ProjetPendu
             {
                 Console.WriteLine("Veuillez écrire un mot sans accent, en majuscules, présent dans le dictionnaire");
                 MotChoisi = Console.ReadLine();
-
                 MotDansDictionnaire = VerifMotHumain(MotChoisi);          // permet de vérifier si le mot choisi est bien dans le dictionnaire
             } while (!MotDansDictionnaire);
             

@@ -172,6 +172,10 @@ namespace ProjetPendu
                 Console.WriteLine("Vous jouerez contre un autre joueur.");
                 return NbJoueurHumain;
             }
+            else
+            {
+                return -1;
+            }
 
         }
 

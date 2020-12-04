@@ -14,6 +14,7 @@ namespace ProjetPendu
             int ChoixDebut, ChoixPartie;
             string MotADeviner = "null";
             bool MotDansDictionnaire = false;
+            bool MotDonné = false;
 
             // DEBUT DE PARTIE
             do
@@ -46,12 +47,17 @@ namespace ProjetPendu
                 Console.WriteLine("Tapez 0 pour abandonner !");
                 Console.WriteLine("Tapez 1 pour continuer la partie !");
                 ChoixPartie = int.Parse(Console.ReadLine());
-                MotADeviner = Fonctions.ChoixMotOrdi();
-                Console.WriteLine(MotADeviner);
-
-                if (ChoixPartie == 1)           // La partie est abandonnée
+                if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
                 {
-                    if (Roles == 1) // L'ORDINATEUR DEVINE
+                    MotADeviner = Fonctions.ChoixMotOrdi();
+                    MotDonné = true;
+                }
+                // Console.WriteLine(MotADeviner);      
+
+                // LA PARTIE CONTINUE 
+                if (ChoixPartie == 1)          
+                {
+                    if (Roles == 1)     // L'ORDINATEUR DEVINE
                     {
                         do
                         {
@@ -61,9 +67,8 @@ namespace ProjetPendu
                         } while (!MotDansDictionnaire);
 
                     }
-                    else if (Roles == 0)    //LE JOUEUR HUMAIN DEVINE
+                    else if (Roles == 0)    // LE JOUEUR HUMAIN DEVINE
                     {
-                        MotADeviner = Fonctions.ChoixMotOrdi();
                         Console.WriteLine("Proposez une lettre ou un mot :");
                         // TODO
                     }
@@ -72,6 +77,7 @@ namespace ProjetPendu
                         Console.WriteLine("Erreur dans l'attributuion des rôles");
                     }
                 }
+                // PARTIE ABANDONNE 
                 else
                 {
                     Procedures.PartieAbandonnee(MotADeviner);

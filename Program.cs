@@ -45,6 +45,7 @@ namespace ProjetPendu
             // LA PARTIE COMMENCE
             do
             {
+                Console.WriteLine();
                 Console.WriteLine("Choississez une action : ");
                 Console.WriteLine("Tapez 0 pour abandonner !");
                 Console.WriteLine("Tapez 1 pour continuer la partie !");
@@ -69,6 +70,8 @@ namespace ProjetPendu
                         Lettre = char.Parse(Console.ReadLine());                        // L'utilisateur propose une lettre
                         EtatLettre = Fonctions.VerifierLettre(Lettre, MotADeviner);     // On vérifie si la lettre est présente dans le mot
                         // TODO : Affichermot
+                        Console.WriteLine("Mot :");
+                        Procedures.AfficherMotADeviner(EtatLettre, MotADeviner, Lettre);
                     }
                     else
                     {

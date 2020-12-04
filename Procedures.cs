@@ -24,16 +24,41 @@ namespace ProjetPendu
         }
 
         //LOLO
-        public static void AfficherMotADeviner(char NouvelleLettre, char Motchoisi)
+        public static void AfficherMotADeviner(int EtatLettre, string MotChoisi, char Lettre)
         {
             /* Nom : AfficherMotADeviner
              * Objectif :  A chaque tour, affiche le mot à deviner avec la nouvelle lettre donnée par l'utilisateur (NouvelleLettre)
              * Paramètre(s) d'entrée : char NouvelleLettre correspond à la lettre proposée par le joueur (humain ou ordinateur)
              * Variable de retour : void
              * Afficher toutes les mêmes du mot si elle est proposé et présente plusieurs fois dans le mot
+             * Recuperer EtatLettre
             */
+            if (EtatLettre==0)
+            {
+                for (int i = 0; i < MotChoisi.Length; i++)
+                {
+                    Console.Write("_ ");
 
+                }
+            }
+            else if (EtatLettre==1)
+            {
+                
+                for (int i = 0; i < MotChoisi.Length; i++)
+                {
 
+                    if (Lettre == MotChoisi[i])
+                    {
+                        Console.Write(Lettre);
+
+                    }
+                    else
+                    {
+                        Console.Write("_ ");
+                    }
+
+                }
+            }
 
         }
 

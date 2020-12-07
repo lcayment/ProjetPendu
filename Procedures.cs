@@ -9,6 +9,12 @@ namespace ProjetPendu
     {
         public static void AfficherRegles()
         {
+            /* Nom : AfficherRegles
+             * Objectif :  Permet d'afficher les règles en lisant un fichier txt
+             * Paramètre(s) d'entrée : aucun
+             * Variable de retour : void
+            */
+
             string text = System.IO.File.ReadAllText(@"..\..\..\Tools\ReglesJeu.txt");
 
             try

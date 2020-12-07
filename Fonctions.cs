@@ -42,7 +42,7 @@ namespace ProjetPendu
         }
 
         //LOLO
-        public static int VerifierLettre(char Lettre, string MotChoisi)
+        public static char [] VerifierLettre(char Lettre, string MotChoisi, char [] MotTrouve)
         {
             /* Nom : VerifierLettre
              * Objectif : Verifie si la lettre (Lettre) est juste, fausse ou a deja été donnée
@@ -52,37 +52,31 @@ namespace ProjetPendu
 
             int EtatLettre = 0;
             bool Lettreok = false;
+            
 
             // On parcourt le mot choisi (qui est un tableau de char) pour comparer chaque lettre du mot avec la lettre donnée
             for (int i = 0; i < MotChoisi.Length; i++)  
             {
-                if (Lettreok == false)          // Si la lettre a deja été trouvée, on ne refait pas de test
-                {
+                
                     if (MotChoisi[i] == Lettre)
                     {
                         EtatLettre = 1;         // La lettre est juste
                         Lettreok = true;        // On ne reteste pas le mot, on attend la fin de la boucle for
+                        MotTrouve[i] = Lettre;
                     }
                     // TODO :Pour l'instant on dit simplement si la lettre est dans le mot ou non
                     else
                     {
                         EtatLettre = 0;
-                        //TODO : Après voir lettre=-1 pour dire que la lettre a déjà été donné
+                        MotTrouve[i] = '_';
+                    //TODO : Après voir lettre=-1 pour dire que la lettre a déjà été donné
 
                     }
-                }                   
+                                
             }
-            // Affichage
-            if (EtatLettre == 1)
-            {
-                Console.WriteLine("La lettre est juste !");
-            }
-            else
-            {
-                Console.WriteLine("La lettre est fausse ...");
-            }
+            
 
-            return EtatLettre;
+            return MotTrouve;
         }
 
         public static bool VerifierMot(string MotDonne, string MotADeviner)

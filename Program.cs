@@ -13,7 +13,7 @@ namespace ProjetPendu
             int ChoixPartie;
             string MotADeviner = "null";
             bool MotDonné = false;
-            char[] SauvegardeMot;
+            char[] MotTrouve ;
 
             /* --------------- */
 
@@ -44,21 +44,24 @@ namespace ProjetPendu
                     {
                         Fonctions.PropositionLettreOrdi();
                         MotADeviner = Fonctions.ChoixMotHumain();
+                        MotTrouve = new char[MotADeviner.Length];
                     }
                     else if (Roles == 0)    // le joueur devine
                     {
                         if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
                         {
                             MotADeviner = Fonctions.ChoixMotOrdi();
-                            MotDonné = true;
+                            MotDonné = true;                           
                         }
-                        Procedures.PropositionHumain(MotADeviner);
+                        MotTrouve = new char[MotADeviner.Length];
+                        Procedures.PropositionHumain(MotADeviner, MotTrouve);
   
                     }
                     else
                     {
                         Console.WriteLine("Erreur dans l'attributuion des rôles");
                     }
+                    
                 }
 
                 else

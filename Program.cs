@@ -13,6 +13,8 @@ namespace ProjetPendu
             int ChoixPartie;
             string MotADeviner = "null";
             bool MotDonné = false;
+            char[] SauvegardeMot;
+
             /* --------------- */
 
             /* DEBUT DE PARTIE */
@@ -40,6 +42,7 @@ namespace ProjetPendu
                 {
                     if (Roles == 1)     // l'ordinateur devine
                     {
+                        Fonctions.PropositionLettreOrdi();
                         MotADeviner = Fonctions.ChoixMotHumain();
                     }
                     else if (Roles == 0)    // le joueur devine
@@ -49,7 +52,7 @@ namespace ProjetPendu
                             MotADeviner = Fonctions.ChoixMotOrdi();
                             MotDonné = true;
                         }
-                        Procedures.Propositions(MotADeviner);
+                        Procedures.PropositionHumain(MotADeviner);
   
                     }
                     else

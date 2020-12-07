@@ -52,7 +52,7 @@ namespace ProjetPendu
 
             int EtatLettre = 0;
             bool Lettreok = false;
-              
+
             // On parcourt le mot choisi (qui est un tableau de char) pour comparer chaque lettre du mot avec la lettre donnée
             for (int i = 0; i < MotChoisi.Length; i++)  
             {
@@ -242,8 +242,13 @@ namespace ProjetPendu
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : char Lettre correspond à la lettre de retour venant de l'ordi
             */
+            char Lettre;
+            var r = new Random();
 
-            return ('a');
+            Lettre = (char)r.Next('A', 'Z');
+            Console.WriteLine("Lettre ordi : " + Lettre);
+
+            return Lettre;
         }
 
         public static string PropositionMotOrdi()

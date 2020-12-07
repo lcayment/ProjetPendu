@@ -29,7 +29,7 @@ namespace ProjetPendu
             }
         }
 
-        public static void AfficherMotADeviner(char[]MotTrouve)
+        public static void AfficherMotADeviner(char[] MotTrouve)
         {
             /* Nom : AfficherMotADeviner
              * Objectif :  A chaque tour, affiche le mot à deviner avec la nouvelle lettre donnée par l'utilisateur (Lettre)
@@ -46,32 +46,30 @@ namespace ProjetPendu
             {
                 Console.Write(MotTrouve[i]);
             }
-           /* if (EtatLettre==0)
-            {
-                for (int i = 0; i < MotTrouve.Length; i++)
-                {
-                    Console.Write("_ ");
-                }
-            }
-            else if (EtatLettre==1)
-            {
-                
-                for (int i = 0; i < MotChoisi.Length; i++)
-                {
+            /* if (EtatLettre==0)
+             {
+                 for (int i = 0; i < MotTrouve.Length; i++)
+                 {
+                     Console.Write("_ ");
+                 }
+             }
+             else if (EtatLettre==1)
+             {
 
-                    if (Lettre == MotChoisi[i])
-                    {
-                        Console.Write(Lettre);
-                    }
-                    else
-                    {
-                        Console.Write("_ ");
-                    }
-                }
-            }
-           */
+                 for (int i = 0; i < MotChoisi.Length; i++)
+                 {
+                     if (Lettre == MotChoisi[i])
+                     {
+                         Console.Write(Lettre);
+                     }
+                     else
+                     {
+                         Console.Write("_ ");
+                     }
+                 }
+             }
+            */
         }
-
         public static void PartieAbandonnee(string MotADeviner)
         {
             /* Nom : PartieAbandonnee
@@ -103,12 +101,11 @@ namespace ProjetPendu
         {
             /* Nom : Propositions
              * Objectif : Demande à l'humain un mot ou une lettre et la/le verifie
-             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur
+             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur et MotTrouve au mot avec les lettres trouvées et les _
              * Variable de retour : void
             */
 
             char Lettre;
-            int EtatLettre;
             string MotPropose;
             int PropositionHumain;
 
@@ -124,13 +121,10 @@ namespace ProjetPendu
                 {
                     Lettre = Fonctions.PropositionLettreHumain();                   // L'humain propose une lettre
                     MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
-
-                    // TODO : Affichermot
-                    Console.WriteLine("Mot :");
-                    Procedures.AfficherMotADeviner( MotTrouve);
+                    AfficherMotADeviner(MotTrouve);
                 }
 
-                // --------------- L'humain veut proposer un mot --------------- //
+                // --------------- L'humain veut proposer un mot --------------- //     TODO
                 else if (PropositionHumain == 2)
                 {
                     MotPropose = Fonctions.PropositionMotHumain();
@@ -144,12 +138,12 @@ namespace ProjetPendu
         {
             /* Nom : Propositions
              * Objectif : Gère les propositions faites par l'ordinateur
-             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur
+             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur et MotTrouve au mot avec les lettres trouvées et les _
              * Variable de retour : void
+             * TODO
             */
 
             char Lettre;
-            int EtatLettre;
             string MotPropose;
 
             if (true)       // Nombre de lettres devinées < 75%
@@ -157,10 +151,7 @@ namespace ProjetPendu
                 // --------------- L'ordi proposer une lettre --------------- //
                 Lettre = Fonctions.PropositionLettreOrdi();                     // L'ordi propose une lettre
                 MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
-                                                                                // TODO : Affichermot
-                Console.WriteLine("Mot :");
-                // TODO : finir afficherMotADeviner
-                Procedures.AfficherMotADeviner( MotTrouve);
+                AfficherMotADeviner( MotTrouve);
             }
             
 

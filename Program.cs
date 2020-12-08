@@ -13,7 +13,8 @@ namespace ProjetPendu
             int ChoixPartie;
             string MotADeviner = "null";
             bool MotDonné = false;
-            char[] MotTrouve ;
+            char[] MotTrouve= new char[40] ;
+           
 
             /* --------------- */
 
@@ -44,16 +45,22 @@ namespace ProjetPendu
                     {
                         Fonctions.PropositionLettreOrdi();
                         MotADeviner = Fonctions.ChoixMotHumain();
-                        MotTrouve = new char[MotADeviner.Length];
+                        
                     }
                     else if (Roles == 0)    // le joueur devine
                     {
                         if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
                         {
                             MotADeviner = Fonctions.ChoixMotOrdi();
-                            MotDonné = true;                           
+                            MotDonné = true;
+                            //On rempli MotTrouve de _ pour ensuite afficher seulement les lettres trouvées
+                            MotTrouve = new char [MotADeviner.Length];
+                            for (int i = 0; i < MotADeviner.Length; i++)
+                            {
+                                MotTrouve[i] = '_';
+                            }                         
                         }
-                        MotTrouve = new char[MotADeviner.Length];
+                        
                         Procedures.PropositionHumain(MotADeviner, MotTrouve);
   
                     }

@@ -50,29 +50,24 @@ namespace ProjetPendu
              * Variable de retour : int EtatLettre prend la valeur 0 si la lettre fausse ou la valeur 1 si la lettre juste ou la valeur -1 si la lettre déjà donnée
             */
 
-            int EtatLettre = 0;
-            bool Lettreok = false;
-            
-
             // On parcourt le mot choisi (qui est un tableau de char) pour comparer chaque lettre du mot avec la lettre donnée
             for (int i = 0; i < MotChoisi.Length; i++)  
             {
                 
                     if (MotChoisi[i] == Lettre)
                     {
-                        EtatLettre = 1;         // La lettre est juste
-                        Lettreok = true;        // On ne reteste pas le mot, on attend la fin de la boucle for
-                        MotTrouve[i] = Lettre;
+                       MotTrouve[i] = Lettre;
                     }
-                    // TODO :Pour l'instant on dit simplement si la lettre est dans le mot ou non
-                    else
-                    {
-                        EtatLettre = 0;
-                        MotTrouve[i] = '_';
-                    //TODO : Après voir lettre=-1 pour dire que la lettre a déjà été donné
+                   
+                // TODO :Pour l'instant on dit simplement si la lettre est dans le mot ou non
+                /*else
+                {
+                    EtatLettre = 0;
+                    MotTrouve[i] = '_';
+                //TODO : Après voir lettre=-1 pour dire que la lettre a déjà été donné
 
-                    }
-                                
+                }*/
+
             }
             
 

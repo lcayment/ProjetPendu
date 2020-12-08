@@ -75,7 +75,7 @@ namespace ProjetPendu
 
         }
 
-        public static void PropositionHumain(string MotADeviner, char [] MotTrouve)
+        public static bool PropositionHumain(string MotADeviner, char [] MotTrouve)
         {
             /* Nom : Propositions
              * Objectif : Demande à l'humain un mot ou une lettre et la/le verifie
@@ -86,7 +86,8 @@ namespace ProjetPendu
             char Lettre;
             string MotPropose;
             int PropositionHumain;
-            bool MotJuste = false;
+            bool MotJuste;
+            bool PartieFinie = false;
 
             do
             {
@@ -95,6 +96,7 @@ namespace ProjetPendu
 
                 PropositionHumain = int.Parse(Console.ReadLine());
             } while ((PropositionHumain != 1) && (PropositionHumain != 2));
+
 
             // --------------- L'humain veut proposer une lettre --------------- //
             if (PropositionHumain == 1)
@@ -107,6 +109,7 @@ namespace ProjetPendu
             // --------------- L'humain veut proposer un mot --------------- //     TODO
             else if (PropositionHumain == 2)
             {
+                PartieFinie = true;         // Indique que la partie est terminée après la proposition du mot
                 MotPropose = Fonctions.PropositionMotHumain();
                 MotJuste = Fonctions.VerifierMot(MotPropose, MotADeviner);
                 if (MotJuste)
@@ -119,8 +122,9 @@ namespace ProjetPendu
                     PartieAbandonnee(MotADeviner);
                 }
             }
+            return PartieFinie;
 
-            
+
 
         }
 

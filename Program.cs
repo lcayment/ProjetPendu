@@ -13,9 +13,8 @@ namespace ProjetPendu
             int ChoixPartie;
             string MotADeviner = "null";
             bool MotDonné = false;
-            bool FirstDisplay = true;
             char[] MotTrouve = new char[2];     // la taille est random
-            char Lettre;
+            bool PartieFinie = false;
 
             /* --------------- */
 
@@ -53,23 +52,23 @@ namespace ProjetPendu
                     {
                         if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
                         {
+                            //Permet de choisir le mot de l'ordinateur
                             MotADeviner = Fonctions.ChoixMotOrdi();
                             MotDonné = true;
+
+                            // Initialise le MotTrouve avec des _
                             MotTrouve = new char[MotADeviner.Length];
                             for (int i = 0; i < MotADeviner.Length; i++)
                             {
                                 MotTrouve[i] = '_';
                             }
                         }
-                        
-                        Procedures.PropositionHumain(MotADeviner, MotTrouve);
-
+                        PartieFinie = Procedures.PropositionHumain(MotADeviner, MotTrouve);
                     }
                     else
                     {
                         Console.WriteLine("Erreur dans l'attributuion des rôles");
                     }
-
                 }
 
                 else
@@ -77,7 +76,7 @@ namespace ProjetPendu
                     Console.WriteLine("Erreur sur l'action choisie");
                 }
 
-            } while (ChoixPartie != 0);
+            } while ((ChoixPartie != 0) && (!PartieFinie));
 
             //NOMBRE TENTATIVES RESTANTES
 

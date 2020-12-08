@@ -45,30 +45,9 @@ namespace ProjetPendu
             for (int i = 0; i < MotTrouve.Length; i++)
             {
                 Console.Write(MotTrouve[i]);
-            }
-            /* if (EtatLettre==0)
-             {
-                 for (int i = 0; i < MotTrouve.Length; i++)
-                 {
-                     Console.Write("_ ");
-                 }
-             }
-             else if (EtatLettre==1)
-             {
 
-                 for (int i = 0; i < MotChoisi.Length; i++)
-                 {
-                     if (Lettre == MotChoisi[i])
-                     {
-                         Console.Write(Lettre);
-                     }
-                     else
-                     {
-                         Console.Write("_ ");
-                     }
-                 }
-             }
-            */
+            }
+           
         }
         public static void PartieAbandonnee(string MotADeviner)
         {

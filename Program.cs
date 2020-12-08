@@ -55,8 +55,13 @@ namespace ProjetPendu
                         {
                             MotADeviner = Fonctions.ChoixMotOrdi();
                             MotDonné = true;
+                            MotTrouve = new char[MotADeviner.Length];
+                            for (int i = 0; i < MotADeviner.Length; i++)
+                            {
+                                MotTrouve[i] = '_';
+                            }
                         }
-                        MotTrouve = new char[MotADeviner.Length];
+                        
                         Procedures.PropositionHumain(MotADeviner, MotTrouve);
 
                     }

@@ -63,7 +63,7 @@ namespace ProjetPendu
                                 MotTrouve[i] = '_';
                             }
                         }
-                        PartieFinie = Procedures.PropositionHumain(MotADeviner, MotTrouve);
+                        PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve);
                     }
                     else
                     {

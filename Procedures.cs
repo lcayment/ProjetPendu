@@ -36,10 +36,6 @@ namespace ProjetPendu
              * Paramètre(s) d'entrée : char Lettre correspond à la lettre proposée par le joueur (humain ou ordinateur),
              * string MotChoisi correspond au mot à deviner et EtatLettre correspond au statut de la lettre (juste, fausse, deja donnée)
              * Variable de retour : void
-             * 
-             * TODO :
-             * Afficher toutes les mêmes du mot si elle est proposé et présente plusieurs fois dans le mot
-             * Recuperer EtatLettre
             */
 
             for (int i = 0; i < MotTrouve.Length; i++)
@@ -75,58 +71,7 @@ namespace ProjetPendu
 
         }
 
-        public static bool PropositionHumain(string MotADeviner, char [] MotTrouve)
-        {
-            /* Nom : Propositions
-             * Objectif : Demande à l'humain un mot ou une lettre et la/le verifie
-             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur et MotTrouve au mot avec les lettres trouvées et les _
-             * Variable de retour : void
-            */
-
-            char Lettre;
-            string MotPropose;
-            int PropositionHumain;
-            bool MotJuste;
-            bool PartieFinie = false;
-
-            do
-            {
-                Console.WriteLine("Si vous voulez proposer une lettre, tapez 1");
-                Console.WriteLine("Si vous voulez proposer un mot, tapez 2");
-
-                PropositionHumain = int.Parse(Console.ReadLine());
-            } while ((PropositionHumain != 1) && (PropositionHumain != 2));
-
-
-            // --------------- L'humain veut proposer une lettre --------------- //
-            if (PropositionHumain == 1)
-            {
-                Lettre = Fonctions.PropositionLettreHumain();                   // L'humain propose une lettre
-                MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
-                AfficherMotADeviner(MotTrouve);
-            }
-
-            // --------------- L'humain veut proposer un mot --------------- //     TODO
-            else if (PropositionHumain == 2)
-            {
-                PartieFinie = true;         // Indique que la partie est terminée après la proposition du mot
-                MotPropose = Fonctions.PropositionMotHumain();
-                MotJuste = Fonctions.VerifierMot(MotPropose, MotADeviner);
-                if (MotJuste)
-                {
-                    Console.WriteLine("C'est la victoire ! Bravo !");
-                }
-                else
-                {
-                    Console.WriteLine("C'est perdu, dommage");
-                    PartieAbandonnee(MotADeviner);
-                }
-            }
-            return PartieFinie;
-
-
-
-        }
+       
 
         public static void PropositionOrdi(string MotADeviner, char []MotTrouve)
         {

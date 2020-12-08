@@ -8,9 +8,9 @@ namespace ProjetPendu
     /* THIS CLASS CONTAINS ALL FONCTIONS */
     class Fonctions
     {
-        public static bool VerifMotHumain(string MotADeviner)
+        public static bool MotHumainDictionnaire(string MotADeviner)
         {
-            /* Nom : VerifMotHumain
+            /* Nom : MotHumainDictionnaire
              * Objectif : Cette fonction permet de vérifier si le mot choisi par le joueur humain est présent dans le dictionnaire ou non
              * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par le joueur humain
              * Variable de retour : bool MotDansDictionnaire prend la valeur true quand le mot est dans le dictionnaire et false quand le mot est absent du dictionnaire
@@ -41,30 +41,24 @@ namespace ProjetPendu
             return MotDansDictionnaire;
         }
 
-        //LOLO
         public static char[] VerifierLettre(char Lettre, string MotChoisi, char[] MotTrouve)
         {
             /* Nom : VerifierLettre
-             * Objectif : Verifie si la lettre (Lettre) est juste, fausse ou a deja été donnée
-             * Paramètre(s) d'entrée : char Lettre = lettre proposée par le joueur (humain ou ordinateur)
-             * Variable de retour : int EtatLettre prend la valeur 0 si la lettre fausse ou la valeur 1 si la lettre juste ou la valeur -1 si la lettre déjà donnée
+             * Objectif : Verifie si la lettre donnée est juste ou fausse
+             * Paramètre(s) d'entrée :  char Lettre = lettre proposée par le joueur (humain ou ordinateur)
+             *                          string MotChoisi = mot à deviner
+             *                          char [] MotTrouve = mot dans l'état actuel (avec les lettres devinées et les _)
+             * Variable de retour : char [] MotTrouve est le mot dans l'état actuel (avec les lettres devinées et les _)
             */
-
-
 
             // On parcourt le mot choisi (qui est un tableau de char) pour comparer chaque lettre du mot avec la lettre donnée
             for (int i = 0; i < MotChoisi.Length; i++)
             {
-
                 if (MotChoisi[i] == Lettre)
                 {     
                     MotTrouve[i] = Lettre;
-                }
-                 
-                 
+                }                
             }
-
-
             return MotTrouve;
         }
 
@@ -95,7 +89,7 @@ namespace ProjetPendu
             /* Nom : ChoixMotOrdi
             * Objectif : Retourne un mot selectionné par l'ordinateur (MotChoisi) dans le fichier DICOfr.txt
             * Paramètre(s) d'entrée : aucun
-            * Variable de retour : string MotChoisi correspond au mot selectionné par l'ordinateur
+            * Variable de retour : string MotChoisi = mot selectionné par l'ordinateur
             */
 
             var lines = File.ReadAllLines(@"..\..\..\Tools\dicoFR.txt");        // On recupere le nombre de lines dans le dictionnaire
@@ -109,9 +103,9 @@ namespace ProjetPendu
         public static string ChoixMotHumain()
         {
             /* Nom : ChoixMotHumain
-            * Objectif : Retourne un mot selectionné par le joueur humain (MotChoisi) dans le fichier DICOfr.txt
+            * Objectif : Retourne un mot selectionné par le joueur humain (MotChoisi) dans le fichier DICOfr.txt qui a été vérifié
             * Paramètre(s) d'entrée : aucun
-            * Variable de retour : string MotChoisi correspond au mot selectionné par le joueur
+            * Variable de retour : string MotChoisi = mot selectionné par le joueur humain
             */
 
             string MotChoisi;
@@ -122,7 +116,7 @@ namespace ProjetPendu
             {
                 Console.WriteLine("Veuillez écrire un mot sans accent, en majuscules, présent dans le dictionnaire");
                 MotChoisi = Console.ReadLine();
-                MotDansDictionnaire = VerifMotHumain(MotChoisi);          // permet de vérifier si le mot choisi est bien dans le dictionnaire
+                MotDansDictionnaire = MotHumainDictionnaire(MotChoisi);          // permet de vérifier si le mot choisi est bien dans le dictionnaire
             } while (!MotDansDictionnaire);
             
             return MotChoisi;
@@ -131,14 +125,16 @@ namespace ProjetPendu
         public static int ChoixNbJoueurs()
         {
             /* Nom : ChoixNbJoueurs
-            * Objectif : Permet aux joueurs de sélectionner le nombre de joueurs
+            * Objectif : Permet aux joueurs de sélectionner le nombre de joueurs humains
             * Paramètre(s) d'entrée : aucun
-            * Variable de retour : int NbJoueursHumains prend la valeur 0 si l'ordinateur joue contre lui-même, 1 le joueur joue contre l'ordinateur, 2 deux joueurs humains jouent l'un contre l'autre
+            * Variable de retour : int NbJoueursHumains prend la valeur 0 si l'ordinateur joue contre lui-même, 
+            *                                                           1 le joueur joue contre l'ordinateur, 
+            *                                                           2 deux joueurs humains jouent l'un contre l'autre
             */
 
-            int NbJoueurHumain = 0;
-            string stNbJoueurHumain = "";
-            bool IsOk = false;
+            int NbJoueurHumain;
+            string stNbJoueurHumain;
+            bool IsOk;
 
             // Tant que le nombre de joueurs donné n'est pas valide, on redemande un nombre de joueurs
             do
@@ -174,10 +170,12 @@ namespace ProjetPendu
         public static int ChoixRoles()
         {
             /* Nom : ChoixRoles
-            * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet de choisir le mode de jeu
+            * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet de choisir le mode de jeu
             * Paramètre(s) d'entrée : aucun
-            * Variable de retour : int Modejeu prend la valeur 0 si le joueur humain devine le mot ou la valeur 1 si l'ordinateur devine
+            * Variable de retour : int Modejeu prend la valeur 0 si le joueur humain devine le mot,
+            *                                                  1 si l'ordinateur devine
             */
+
             Console.WriteLine("Si souhaites deviner le mot que l'ordinateur a choisi : tape 0");
             Console.WriteLine("Si tu souhaites faire deviner le mot à l'ordinateur : tape 1");
             int ModeJeu = int.Parse(Console.ReadLine());
@@ -198,7 +196,7 @@ namespace ProjetPendu
         public static char PropositionLettreHumain()
         {
             /* Nom : PropositionLettreHumain
-            * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'humain de proposer une lettre
+            * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'humain de proposer une lettre
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : char Lettre correspond à la lettre de retour venant de l'humain
             */
@@ -214,15 +212,15 @@ namespace ProjetPendu
         public static string PropositionMotHumain()
         {
             /* Nom : PropositionMotHumain
-            * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'humain de proposer un mot
+            * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'humain de proposer un mot
             * Paramètre(s) d'entrée : aucun
-            * Variable de retour : string Mot correspond au mot de retour venant de l'humain
+            * Variable de retour : string Mot = mot de retour venant de l'humain
             */
 
             string MotPropose;
 
             Console.WriteLine("Proposez un mot en majuscules et sans accent :");
-            MotPropose = Console.ReadLine();      // L'utilisateur propose un  mot
+            MotPropose = Console.ReadLine();      // L'utilisateur propose un mot
 
             return (MotPropose);
         }
@@ -230,7 +228,7 @@ namespace ProjetPendu
         public static char PropositionLettreOrdi()
         {
             /* Nom : PropositionLettreOrdi
-            * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'ordinateur de proposer une lettre
+            * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'ordinateur de proposer une lettre
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : char Lettre correspond à la lettre de retour venant de l'ordi
             */
@@ -246,9 +244,11 @@ namespace ProjetPendu
         public static string PropositionMotOrdi()
         {
             /* Nom : PropositionMotOrdi
-            * Objectif : Cette fonction n'est exécuté que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'ordinateur de proposer un mot
+            * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'ordinateur de proposer un mot
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : string Mot correspond au mot de retour venant de l'ordi
+            * 
+            * TODO
             */
 
             return ("mot");
@@ -258,8 +258,8 @@ namespace ProjetPendu
         {
             /* Nom : ActionsTour
              * Objectif :  Permet de centraliser les actions de chaque tour
-             * Paramètre(s) d'entrée : null
-             * Variable de retour : int ChoixPartie qui correspond à l'action selectionnée
+             * Paramètre(s) d'entrée : aucun
+             * Variable de retour : int ChoixPartie = action selectionnée
             */
 
             int ChoixPartie;
@@ -277,9 +277,9 @@ namespace ProjetPendu
         public static int DebutPartie(out int NbJoueursHumains)
         {
             /* Nom : DebutPartie
-             * Objectif :  Permet de centraliser les actiosn de début de partie, à savoir l'affichage des règles et le nombre de joueurs
+             * Objectif :  Permet de centraliser les actions de début de partie, à savoir l'affichage des règles et le nombre de joueurs
              * Paramètre(s) d'entrée : out int NbJoueursHumains est le paramètre qui sera récupéré qui correspond au nombre de joueurs humains
-             * Variable de retour : int Roles qui correspond au role choisi au sein du jeu (je devine ou je fais deviner)
+             * Variable de retour : int Roles = role choisi au sein du jeu (je devine ou je fais deviner)
             */
 
             int ChoixDebut;
@@ -314,10 +314,11 @@ namespace ProjetPendu
 
         public static bool PropositionHumain(string MotADeviner, char[] MotTrouve)
         {
-            /* Nom : Propositions
-             * Objectif : Demande à l'humain un mot ou une lettre et la/le verifie
-             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur et MotTrouve au mot avec les lettres trouvées et les _
-             * Variable de retour : void
+            /* Nom : PropositionHumain
+             * Objectif : Demande à l'humain un mot ou une lettre et le/la verifie
+             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur
+             *                         char [] MotTrouve au mot avec les lettres trouvées et les _
+             * Variable de retour : bool PartieFinie = signale si la partie se termine (prend la valeur true lorsque le joueur propose un mot)
             */
 
             char Lettre;

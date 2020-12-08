@@ -33,15 +33,13 @@ namespace ProjetPendu
         {
             /* Nom : AfficherMotADeviner
              * Objectif :  A chaque tour, affiche le mot à deviner avec la nouvelle lettre donnée par l'utilisateur (Lettre)
-             * Paramètre(s) d'entrée : char Lettre correspond à la lettre proposée par le joueur (humain ou ordinateur),
-             * string MotChoisi correspond au mot à deviner et EtatLettre correspond au statut de la lettre (juste, fausse, deja donnée)
+             * Paramètre(s) d'entrée : char [] MotTrouve correspond au mot en l'état actuelle (avec les lettres devinées et les underscore)
              * Variable de retour : void
             */
 
             for (int i = 0; i < MotTrouve.Length; i++)
             {
                 Console.Write(MotTrouve[i]);
-
             }
            
         }
@@ -49,7 +47,7 @@ namespace ProjetPendu
         {
             /* Nom : PartieAbandonnee
              * Objectif :  Affiche "Abandon partie !" + le mot à deviner + dessin du pendu
-             * Paramètre(s) d'entrée : aucun
+             * Paramètre(s) d'entrée : string MotADeviner = mot qui était à deviner
              * Variable de retour : void
             */
 
@@ -73,12 +71,14 @@ namespace ProjetPendu
 
        
 
-        public static void PropositionOrdi(string MotADeviner, char []MotTrouve)
+        public static void PropositionOrdi(string MotADeviner, char [] MotTrouve)
         {
             /* Nom : Propositions
              * Objectif : Gère les propositions faites par l'ordinateur
-             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur et MotTrouve au mot avec les lettres trouvées et les _
+             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur 
+             *                         char [] MotTrouve au mot avec les lettres trouvées et les _
              * Variable de retour : void
+             * 
              * TODO
             */
 

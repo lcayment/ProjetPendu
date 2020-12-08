@@ -13,7 +13,7 @@ namespace ProjetPendu
             int ChoixPartie;
             string MotADeviner = "null";
             bool MotDonné = false;
-            char[] MotTrouve = new char[2];     // la taille est random
+            char[] MotTrouve = new char[40];     // la taille est random
             bool PartieFinie = false;
 
             /* --------------- */
@@ -44,9 +44,19 @@ namespace ProjetPendu
                 {
                     if (Roles == 1)     // l'ordinateur devine
                     {
+                        if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
+                        {
+                            MotADeviner = Fonctions.ChoixMotHumain();
+                            MotDonné = true;
+
+                            // Initialise le MotTrouve avec des _
+                            MotTrouve = new char[MotADeviner.Length];
+                            for (int i = 0; i < MotADeviner.Length; i++)
+                            {
+                                MotTrouve[i] = '_';
+                            }
+                        }
                         Fonctions.PropositionLettreOrdi();
-                        MotADeviner = Fonctions.ChoixMotHumain();
-                        MotTrouve = new char[MotADeviner.Length];
                     }
                     else if (Roles == 0)    // le joueur devine
                     {
@@ -77,8 +87,6 @@ namespace ProjetPendu
                 }
 
             } while ((ChoixPartie != 0) && (!PartieFinie));
-
-            //NOMBRE TENTATIVES RESTANTES
 
         }
     }

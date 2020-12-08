@@ -87,8 +87,17 @@ namespace ProjetPendu
                                       string MotADeviner = mot choisi par l'ordinateur ou le joueur humain comme mot à deviner
             * Variable de retour : bool MotJuste prend la valeur true si le mot est juste (victoire) ou la valeur false si le mot est faux (défaite : affichage pendu + mot à deviner)
             */
+            bool MotJuste;
+            if (MotDonne == MotADeviner)
+            {
+                MotJuste = true;
+            }
+            else
+            {
+                MotJuste = false;
+            }
 
-            return false;
+            return MotJuste;
         }
 
         //LOLO

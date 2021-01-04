@@ -43,6 +43,7 @@ namespace ProjetPendu
             }
            
         }
+
         public static void PartieAbandonnee(string MotADeviner)
         {
             /* Nom : PartieAbandonnee
@@ -69,8 +70,6 @@ namespace ProjetPendu
 
         }
 
-       
-
         public static void PropositionOrdi(string MotADeviner, char [] MotTrouve)
         {
             /* Nom : Propositions
@@ -83,14 +82,14 @@ namespace ProjetPendu
             */
 
             char Lettre;
-            string MotPropose;
+            char[] MotPropose;
 
-            if (true)       // Nombre de lettres devinées < 75%
+            if (false)       // Nombre de lettres devinées < 75%
             {
                 // --------------- L'ordi proposer une lettre --------------- //
                 Lettre = Fonctions.PropositionLettreOrdi();                     // L'ordi propose une lettre
                 MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
-                AfficherMotADeviner( MotTrouve);
+                AfficherMotADeviner(MotTrouve);
             }
             
 
@@ -98,7 +97,7 @@ namespace ProjetPendu
             {
                 // ----------------- L'ordi proposer un mot ----------------- //
                 /* Si il y a 75% du mot */
-                MotPropose = Fonctions.PropositionMotOrdi();
+                MotPropose = Fonctions.PropositionMotOrdi(MotTrouve);
             }
                  
             

@@ -83,7 +83,6 @@ namespace ProjetPendu
             return MotJuste;
         }
 
-        //LOLO
         public static string ChoixMotOrdi()
         {
             /* Nom : ChoixMotOrdi
@@ -241,17 +240,47 @@ namespace ProjetPendu
             return Lettre;
         }
 
-        public static string PropositionMotOrdi()
+        public static char[] PropositionMotOrdi(char[] MotTrouve)
         {
             /* Nom : PropositionMotOrdi
             * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'ordinateur de proposer un mot
-            * Paramètre(s) d'entrée : aucun
+            * Paramètre(s) d'entrée : char [] MotTrouve : mot avec les lettres trouvées et les _
             * Variable de retour : string Mot correspond au mot de retour venant de l'ordi
             * 
-            * TODO
+            * TO TEST
             */
+            char[] MotPropose = { 'n', 'u', 'l', 'l' };     // On initialise le MotPropose
+            int CmptLettreOK = 0;   // compte le nombre de lettres correctes dans le mot en cours
+            int CmptLettreMax = 0; // sauvegarde le nombre de lettre correctes maximum
 
-            return ("mot");
+            // L'ordinateur compare chaque mot du dicofr.txt au mot trouve. Le premier mot correspondant est retourné.
+
+            string textFile = @"..\..\..\Tools\dicoFR.txt";     // correspond au chemin relatif du dictionnaire
+
+            // Chaque ligne du fichier va être lue et être comparée au mot donné en paramètre
+            string[] lines = File.ReadAllLines(textFile);
+
+            foreach (string line in lines)      // Action a faire à chaque ligne 
+            {
+                for (int i=0; i < line.Length; i++)     // on parcourt le mot de la ligne en cours
+                {
+                    if ((line[i] == MotTrouve[i]) || (MotTrouve[i] == '_'))       // on compare chaque lettre avec les lettres du MotTrouve
+                    {
+                        CmptLettreOK++;
+                        if (CmptLettreOK > CmptLettreMax)
+                        {
+                            MotPropose = MotTrouve;
+                            CmptLettreOK = CmptLettreMax;
+                        }
+                    }
+                    else  // Ce mot ne correspond pas au MotTrouve
+                    {
+                        
+                    }
+                }
+                CmptLettreOK = 0; 
+            }
+            return MotPropose;
         }
 
         public static int ActionsTour()

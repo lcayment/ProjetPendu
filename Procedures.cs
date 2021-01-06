@@ -55,6 +55,7 @@ namespace ProjetPendu
             Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
             Console.WriteLine("Dommage !");
             string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu.txt");
+            Console.WriteLine("--------------------------------------------------------------------------------");
 
             try
             {

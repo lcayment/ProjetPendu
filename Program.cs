@@ -7,13 +7,13 @@ namespace ProjetPendu
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bienvenue sur notre jeu de pendu");
-            /* VARIABLES - A modifier pour rendre plus propre*/
+            Console.WriteLine("BIENVENUE SUR NOTRE JEU DU PENDU");
+            /* VARIABLES */
             int Roles;
             int ChoixPartie;
             string MotADeviner = "null";
             bool MotDonné = false;
-            char[] MotTrouve = new char[40];     // la taille est random
+            char[] MotTrouve = new char[40];     // la taille est attribuée au hasard
             bool PartieFinie = false;
 
             /* --------------- */
@@ -24,12 +24,13 @@ namespace ProjetPendu
             /* LA PARTIE COMMENCE */
             do
             {
+                
                 ChoixPartie = Fonctions.ActionsTour();        // Présentation des actions possibles à chaque tour
 
                 // --------------- Abandon de la partie --------------- //
                 if (ChoixPartie == 0)
                 {
-                    Console.WriteLine("Vous avez choisi d'abandonner !");
+                    Console.WriteLine("\nVous avez choisi d'abandonner !");
                     Procedures.PartieAbandonnee(MotADeviner);
                 }
 
@@ -42,23 +43,25 @@ namespace ProjetPendu
                 // ---------------  Suite de la partie --------------- // 
                 else if (ChoixPartie == 2)
                 {
-                    if (Roles == 1)     // l'ordinateur devine
+                    if (Roles == 1)     // L'ordinateur devine
                     {
-                        if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
+                        if (MotDonné == false)      // Permet à au joueur humain de choisir le mot à deviner (et ce une unique fois, pas à chaque tour)
                         {
                             MotADeviner = Fonctions.ChoixMotHumain();
                             MotDonné = true;
 
-                            // Initialise le MotTrouve avec des _
-                            MotTrouve = new char[MotADeviner.Length];
+                            // MotTrouve correspond au mot qui evoluera avec les nouvelles lettres trouvées
+                            MotTrouve = new char[MotADeviner.Length];       // MotTrouve est de la même longueur que le mot à deviner
+                            // On initialise le MotTrouve avec des _
                             for (int i = 0; i < MotADeviner.Length; i++)
                             {
                                 MotTrouve[i] = '_';
                             }
                         }
-                        PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve);
+
+                        PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve);    // L'ordinateur fait une proposition (lettre ou mot)
                     }
-                    else if (Roles == 0)    // le joueur devine
+                    else if (Roles == 0)    // Le joueur humain devine
                     {
                         if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
                         {
@@ -78,6 +81,7 @@ namespace ProjetPendu
                     else
                     {
                         Console.WriteLine("Erreur dans l'attributuion des rôles");
+                        PartieFinie = true;
                     }
                 }
 

@@ -51,13 +51,25 @@ namespace ProjetPendu
              * Variable de retour : char [] MotTrouve est le mot dans l'état actuel (avec les lettres devinées et les _)
             */
 
+            bool LettreJuste = false;
             // On parcourt le mot choisi (qui est un tableau de char) pour comparer chaque lettre du mot avec la lettre donnée
             for (int i = 0; i < MotChoisi.Length; i++)
             {
                 if (MotChoisi[i] == Lettre)
                 {     
                     MotTrouve[i] = Lettre;
-                }                
+                    LettreJuste = true;
+                }       
+            }
+
+            if(LettreJuste)
+            {
+                Console.WriteLine("La lettre est juste !");
+
+            }
+            else
+            {
+                Console.WriteLine("La lettre est fausse ...");
             }
             return MotTrouve;
         }
@@ -96,6 +108,7 @@ namespace ProjetPendu
             var randomLineNumber = r.Next(0, lines.Length - 1);                 // On sélectionne une ligne random
             var MotChoisi = lines[randomLineNumber];                            // On lit le mot associé à la ligne
 
+            Console.WriteLine("\nL'ordinateur a choisi un mot, c'est parti !");
             return MotChoisi;
         }
 
@@ -138,26 +151,30 @@ namespace ProjetPendu
             // Tant que le nombre de joueurs donné n'est pas valide, on redemande un nombre de joueurs
             do
             {
-                Console.WriteLine("Combien de joueurs ?");
+                Console.WriteLine("\n--------------------------------------------------------------------------------");
+                Console.WriteLine("Tape 0 pour que l'ordinateur joue seul \nTape 1 si tu veux jouer avec l'ordinateur \nTape 2 si tu veux joueur contre un autre humain !");
+                Console.WriteLine("\nAlors ? Combien y-a-t-il de joueurs ?");
                 stNbJoueurHumain = Console.ReadLine();
                 IsOk = int.TryParse(stNbJoueurHumain, out NbJoueurHumain);
             } while (!IsOk || NbJoueurHumain < 0);
 
             // Selon le nombre de joueurs, un mode différent est lancé
-            if (NbJoueurHumain == 0)
+            if (NbJoueurHumain == 0)        // l'ordinateur joue seul
             {
                 Console.WriteLine("L'ordinateur joue seul :'(");
-                return NbJoueurHumain;
+                Console.WriteLine("Pas encore implémenté, reviens plus tard !\n");
+                return -1;      // Valeur à remplacer par NbJoueurHumain lorsque le mode sera implémenté
             }
-            else if (NbJoueurHumain == 1)
+            else if (NbJoueurHumain == 1)   // un joueur humain
             {
-                Console.WriteLine("Vous jouez contre l'ordinateur.");
+                Console.WriteLine("Vous jouez contre l'ordinateur.\n");
                 return NbJoueurHumain;
             }
-            else if (NbJoueurHumain == 2)
+            else if (NbJoueurHumain == 2)   // deux joueurs humains
             {
                 Console.WriteLine("Vous jouerez contre un autre joueur.");
-                return NbJoueurHumain;
+                Console.WriteLine("Pas encore implémenté, reviens plus tard !\n");
+                return -1;      // Valeur à remplacer par NbJoueurHumain lorsque le mode sera implémenté
             }
             else
             {
@@ -293,7 +310,7 @@ namespace ProjetPendu
 
             int ChoixPartie;
 
-            Console.WriteLine("\nChoississez une action : ");
+            Console.WriteLine("\n--------------------------------------------------------------------------------");
             Console.WriteLine("Tapez 0 pour abandonner !");
             Console.WriteLine("Tapez 1 pour afficher les règles !");
             Console.WriteLine("Tapez 2 pour continuer la partie !");
@@ -317,6 +334,7 @@ namespace ProjetPendu
 
             do
             {
+                Console.WriteLine("\n--------------------------------------------------------------------------------");
                 Console.WriteLine("Choississez une action : ");
                 Console.WriteLine("Tapez 1 pour afficher les règles !");
                 Console.WriteLine("Tapez 2 pour commencer la partie !");
@@ -330,11 +348,15 @@ namespace ProjetPendu
                 else if (ChoixDebut == 2)
                 {
                     // ------------ Choix du nombre de joueurs ------------ //
-                    NbJoueursHumains = Fonctions.ChoixNbJoueurs();
-                    if (NbJoueursHumains == 1)     // Ordinateur contre humain 
+                    do          // la boucle do while est pour l'instant nécessaire car les modes ordinateur seul et 2 joueurs humains ne sont pas encore implémentés
                     {
-                        Roles = Fonctions.ChoixRoles();
-                    }
+                        NbJoueursHumains = Fonctions.ChoixNbJoueurs();
+                        if (NbJoueursHumains == 1)     // Ordinateur contre humain 
+                        {
+                            Roles = Fonctions.ChoixRoles();
+                        }
+                    } while (NbJoueursHumains != 1);
+                    
                 }
             } while (ChoixDebut != 2);
 

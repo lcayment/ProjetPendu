@@ -82,22 +82,39 @@ namespace ProjetPendu
             */
 
             char Lettre;
-            char[] MotPropose;
+            string MotPropose;
+            int NbLettre;
+            double RatioLettre;
+            bool MotJuste;
 
-            if (false)       // Nombre de lettres devinées < 75%
+            NbLettre = Fonctions.CompteLettreTrouvees(MotTrouve);
+            RatioLettre = (100 * NbLettre) / MotTrouve.Length;
+            Console.WriteLine("Ratio : " + RatioLettre);
+            if (RatioLettre < 50)       // Nombre de lettres devinées < 75%
             {
                 // --------------- L'ordi proposer une lettre --------------- //
                 Lettre = Fonctions.PropositionLettreOrdi();                     // L'ordi propose une lettre
                 MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
                 AfficherMotADeviner(MotTrouve);
             }
-            
 
             else // Nombre de lettres devinées < 75%
             {
                 // ----------------- L'ordi proposer un mot ----------------- //
-                /* Si il y a 75% du mot */
+                /* Si il y a 50% du mot */
                 MotPropose = Fonctions.PropositionMotOrdi(MotTrouve);
+                Console.WriteLine("L'ordinateur propose : {0}", MotPropose);
+                MotJuste = Fonctions.VerifierMot(MotPropose, MotADeviner);
+
+                if (MotJuste)
+                {
+                    Console.WriteLine("C'est la victoire ! Bravo à l'ordinateur !");
+                }
+                else
+                {
+                    Console.WriteLine("C'est perdu, dommage");
+                    Procedures.PartieAbandonnee(MotADeviner);
+                }
             }
                  
             

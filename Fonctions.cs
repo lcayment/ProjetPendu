@@ -240,7 +240,7 @@ namespace ProjetPendu
             return Lettre;
         }
 
-        public static char[] PropositionMotOrdi(char[] MotTrouve)
+        public static string PropositionMotOrdi(char[] MotTrouve)
         {
             /* Nom : PropositionMotOrdi
             * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'ordinateur de proposer un mot
@@ -249,7 +249,7 @@ namespace ProjetPendu
             * 
             * TO TEST
             */
-            char[] MotPropose = { 'n', 'u', 'l', 'l' };     // On initialise le MotPropose
+            string MotPropose = "null";     // On initialise le MotPropose
             int CmptLettreOK = 0;   // compte le nombre de lettres correctes dans le mot en cours
             int CmptLettreMax = 0; // sauvegarde le nombre de lettre correctes maximum
 
@@ -262,23 +262,29 @@ namespace ProjetPendu
 
             foreach (string line in lines)      // Action a faire à chaque ligne 
             {
-                for (int i=0; i < line.Length; i++)     // on parcourt le mot de la ligne en cours
+                if (line.Length == MotTrouve.Length)
                 {
-                    if ((line[i] == MotTrouve[i]) || (MotTrouve[i] == '_'))       // on compare chaque lettre avec les lettres du MotTrouve
+                    for (int i = 0; i < line.Length; i++)     // on parcourt le mot de la ligne en cours
                     {
-                        CmptLettreOK++;
-                        if (CmptLettreOK > CmptLettreMax)
+                        if ((line[i] == MotTrouve[i]) || (MotTrouve[i] == '_'))       // on compare chaque lettre avec les lettres du MotTrouve
                         {
-                            MotPropose = MotTrouve;
-                            CmptLettreOK = CmptLettreMax;
+                            CmptLettreOK++;
+                            //Console.WriteLine("cmpt lettre OK : " + CmptLettreOK);
+                            //Console.WriteLine("cmpt lettre max : " + CmptLettreMax);
+                            if (CmptLettreOK > CmptLettreMax)
+                            {
+                                MotPropose = line;
+                                CmptLettreMax = CmptLettreOK;
+                            }
+                        }
+                        else  // Ce mot ne correspond pas au MotTrouve
+                        {
+
                         }
                     }
-                    else  // Ce mot ne correspond pas au MotTrouve
-                    {
-                        
-                    }
+                    CmptLettreOK = 0;
                 }
-                CmptLettreOK = 0; 
+                 
             }
             return MotPropose;
         }
@@ -381,7 +387,7 @@ namespace ProjetPendu
                 MotJuste = Fonctions.VerifierMot(MotPropose, MotADeviner);
                 if (MotJuste)
                 {
-                    Console.WriteLine("C'est la victoire ! Bravo !");
+                    Console.WriteLine("C'est la victoire ! Bravo à l'humain !");
                 }
                 else
                 {
@@ -391,8 +397,19 @@ namespace ProjetPendu
             }
             return PartieFinie;
 
+        }
+        public static int CompteLettreTrouvees(char[] MotTrouve)
+        {
+            int NbLettre = 0;
 
-
+            for (int i = 0; i < MotTrouve.Length; i++)
+            {
+                if (MotTrouve[i] != '_')
+                {
+                    NbLettre++;
+                }
+            }
+            return NbLettre;
         }
     }
 }

@@ -56,7 +56,7 @@ namespace ProjetPendu
                                 MotTrouve[i] = '_';
                             }
                         }
-                        Fonctions.PropositionLettreOrdi();
+                        Procedures.PropositionOrdi(MotADeviner, MotTrouve);
                     }
                     else if (Roles == 0)    // le joueur devine
                     {

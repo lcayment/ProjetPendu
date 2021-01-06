@@ -162,8 +162,7 @@ namespace ProjetPendu
             if (NbJoueurHumain == 0)        // l'ordinateur joue seul
             {
                 Console.WriteLine("L'ordinateur joue seul :'(");
-                Console.WriteLine("Pas encore implémenté, reviens plus tard !\n");
-                return -1;      // Valeur à remplacer par NbJoueurHumain lorsque le mode sera implémenté
+                return NbJoueurHumain;      
             }
             else if (NbJoueurHumain == 1)   // un joueur humain
             {
@@ -252,7 +251,7 @@ namespace ProjetPendu
             var r = new Random();
 
             Lettre = (char)r.Next('A', 'Z');
-            Console.WriteLine("Lettre ordi : " + Lettre);
+            Console.WriteLine("\nL'ordinateur propose la lettre : {0} ", Lettre);
 
             return Lettre;
         }
@@ -355,7 +354,11 @@ namespace ProjetPendu
                         {
                             Roles = Fonctions.ChoixRoles();
                         }
-                    } while (NbJoueursHumains != 1);
+                        else if (NbJoueursHumains == 0)     // Ordinateur contre ordinateur
+                        {
+                            
+                        }
+                    } while ((NbJoueursHumains != 1) && (NbJoueursHumains != 0));
                     
                 }
             } while (ChoixDebut != 2);
@@ -434,7 +437,7 @@ namespace ProjetPendu
 
             NbLettre = CompteLettreTrouvees(MotTrouve);
             RatioLettre = (100 * NbLettre) / MotTrouve.Length;
-            Console.WriteLine("Ratio : " + RatioLettre);
+            Console.WriteLine("\nRatio : " + RatioLettre);
             if (RatioLettre < 50)       // Nombre de lettres devinées < 50%
             {
                 // --------------- L'ordi proposer une lettre --------------- //

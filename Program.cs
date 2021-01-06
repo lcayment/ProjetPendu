@@ -43,46 +43,79 @@ namespace ProjetPendu
                 // ---------------  Suite de la partie --------------- // 
                 else if (ChoixPartie == 2)
                 {
-                    if (Roles == 1)     // L'ordinateur devine
+                    // ---------------  ORDINATEUR / HUMAIN --------------- // 
+                    if (NbJoueursHumains == 1)                        
                     {
-                        if (MotDonné == false)      // Permet à au joueur humain de choisir le mot à deviner (et ce une unique fois, pas à chaque tour)
+                        do
                         {
-                            MotADeviner = Fonctions.ChoixMotHumain();
-                            MotDonné = true;
-
-                            // MotTrouve correspond au mot qui evoluera avec les nouvelles lettres trouvées
-                            MotTrouve = new char[MotADeviner.Length];       // MotTrouve est de la même longueur que le mot à deviner
-                            // On initialise le MotTrouve avec des _
-                            for (int i = 0; i < MotADeviner.Length; i++)
+                            if (Roles == 1)     // L'ordinateur devine
                             {
-                                MotTrouve[i] = '_';
-                            }
-                        }
+                                if (MotDonné == false)      // Permet à au joueur humain de choisir le mot à deviner (et ce une unique fois, pas à chaque tour)
+                                {
+                                    MotADeviner = Fonctions.ChoixMotHumain();
+                                    MotDonné = true;
 
-                        PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve);    // L'ordinateur fait une proposition (lettre ou mot)
+                                    // MotTrouve correspond au mot qui evoluera avec les nouvelles lettres trouvées
+                                    MotTrouve = new char[MotADeviner.Length];       // MotTrouve est de la même longueur que le mot à deviner
+                                                                                    // On initialise le MotTrouve avec des _
+                                    for (int i = 0; i < MotADeviner.Length; i++)
+                                    {
+                                        MotTrouve[i] = '_';
+                                    }
+                                }
+
+                                PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve);    // L'ordinateur fait une proposition (lettre ou mot)
+                            }
+                            else if (Roles == 0)    // Le joueur humain devine
+                            {
+                                if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
+                                {
+                                    //Permet de choisir le mot de l'ordinateur
+                                    MotADeviner = Fonctions.ChoixMotOrdi();
+                                    MotDonné = true;
+
+                                    // Initialise le MotTrouve avec des _
+                                    MotTrouve = new char[MotADeviner.Length];
+                                    for (int i = 0; i < MotADeviner.Length; i++)
+                                    {
+                                        MotTrouve[i] = '_';
+                                    }
+                                }
+                                PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Erreur dans l'attributuion des rôles");
+                                PartieFinie = true;
+                            }
+                        } while ((ChoixPartie != 0) && (!PartieFinie));
                     }
-                    else if (Roles == 0)    // Le joueur humain devine
+                    
+                    // ---------------  ORDINATEUR / ORDINATEUR --------------- // 
+                    else if (NbJoueursHumains == 0)
                     {
-                        if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
+                        do
                         {
-                            //Permet de choisir le mot de l'ordinateur
-                            MotADeviner = Fonctions.ChoixMotOrdi();
-                            MotDonné = true;
-
-                            // Initialise le MotTrouve avec des _
-                            MotTrouve = new char[MotADeviner.Length];
-                            for (int i = 0; i < MotADeviner.Length; i++)
+                            // L'ordinateur1 choisi un mot
+                            if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
                             {
-                                MotTrouve[i] = '_';
+                                //Permet de choisir le mot de l'ordinateur
+                                MotADeviner = Fonctions.ChoixMotOrdi();
+                                MotDonné = true;
+
+                                // Initialise le MotTrouve avec des _
+                                MotTrouve = new char[MotADeviner.Length];
+                                for (int i = 0; i < MotADeviner.Length; i++)
+                                {
+                                    MotTrouve[i] = '_';
+                                }
                             }
-                        }
-                        PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve);
+
+                            // L'ordinateur2 fais une proposition
+                            PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve);    // L'ordinateur fait une proposition (lettre ou mot)
+                        } while ((ChoixPartie != 0) && (!PartieFinie));
                     }
-                    else
-                    {
-                        Console.WriteLine("Erreur dans l'attributuion des rôles");
-                        PartieFinie = true;
-                    }
+                   
                 }
 
                 else

@@ -247,8 +247,8 @@ namespace ProjetPendu
             * Paramètre(s) d'entrée : char [] MotTrouve : mot avec les lettres trouvées et les _
             * Variable de retour : string Mot correspond au mot de retour venant de l'ordi
             * 
-            * TO TEST
             */
+
             string MotPropose = "null";     // On initialise le MotPropose
             int CmptLettreOK = 0;   // compte le nombre de lettres correctes dans le mot en cours
             int CmptLettreMax = 0; // sauvegarde le nombre de lettre correctes maximum
@@ -262,29 +262,23 @@ namespace ProjetPendu
 
             foreach (string line in lines)      // Action a faire à chaque ligne 
             {
-                if (line.Length == MotTrouve.Length)
+                if (line.Length == MotTrouve.Length)    // On ne va étudier que les mots qui ont la même longueur que le mot à trouver
                 {
                     for (int i = 0; i < line.Length; i++)     // on parcourt le mot de la ligne en cours
                     {
                         if ((line[i] == MotTrouve[i]) || (MotTrouve[i] == '_'))       // on compare chaque lettre avec les lettres du MotTrouve
                         {
                             CmptLettreOK++;
-                            //Console.WriteLine("cmpt lettre OK : " + CmptLettreOK);
-                            //Console.WriteLine("cmpt lettre max : " + CmptLettreMax);
                             if (CmptLettreOK > CmptLettreMax)
                             {
-                                MotPropose = line;
-                                CmptLettreMax = CmptLettreOK;
+                                MotPropose = line;          // Le mot de la ligne pourrait correspondre au mot à trouver, on le sauvegarde
+                                CmptLettreMax = CmptLettreOK;   // on sauvegarde le nombre de lettre correctes
                             }
                         }
-                        else  // Ce mot ne correspond pas au MotTrouve
-                        {
-
-                        }
+                        else; // Ce mot ne correspond pas au MotTrouve
                     }
                     CmptLettreOK = 0;
                 }
-                 
             }
             return MotPropose;
         }
@@ -398,15 +392,71 @@ namespace ProjetPendu
             return PartieFinie;
 
         }
+
+        public static bool PropositionOrdi(string MotADeviner, char[] MotTrouve)
+        {
+            /* Nom : Propositions
+             * Objectif : Gère les propositions faites par l'ordinateur
+             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur 
+             *                         char [] MotTrouve au mot avec les lettres trouvées et les _
+             * Variable de retour : bool PartieFinie = signale si la partie se termine (prend la valeur true lorsque l'ordinateur propose un mot)
+             * 
+            */
+
+            char Lettre;
+            string MotPropose;
+            int NbLettre;
+            double RatioLettre;
+            bool MotJuste;
+            bool PartieFinie = false;
+
+            NbLettre = CompteLettreTrouvees(MotTrouve);
+            RatioLettre = (100 * NbLettre) / MotTrouve.Length;
+            Console.WriteLine("Ratio : " + RatioLettre);
+            if (RatioLettre < 50)       // Nombre de lettres devinées < 50%
+            {
+                // --------------- L'ordi proposer une lettre --------------- //
+                Lettre = PropositionLettreOrdi();                     // L'ordi propose une lettre
+                MotTrouve = VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
+                Procedures.AfficherMotADeviner(MotTrouve);
+            }
+
+            else // Nombre de lettres devinées > 50%
+            {
+                // ----------------- L'ordi proposer un mot ----------------- //
+                PartieFinie = true;         // Indique que la partie est terminée après la proposition du mot
+                MotPropose = PropositionMotOrdi(MotTrouve);
+                Console.WriteLine("L'ordinateur propose : {0}", MotPropose);
+                MotJuste = VerifierMot(MotPropose, MotADeviner);
+
+                if (MotJuste)
+                {
+                    Console.WriteLine("C'est la victoire ! Bravo à l'ordinateur !");
+                }
+                else
+                {
+                    Console.WriteLine("C'est perdu, dommage");
+                    Procedures.PartieAbandonnee(MotADeviner);
+                }
+            }
+
+            return PartieFinie;
+        }
         public static int CompteLettreTrouvees(char[] MotTrouve)
         {
+            /* Nom : CompteLettreTrouvees
+             * Objectif : Permet de compter le nombre de lettre trouvées
+             * Paramètre(s) d'entrée : char [] MotTrouve au mot avec les lettres trouvées et les _
+             * Variable de retour : int NbLettre = le nombre de lettres déjà trouvées
+            */
+
             int NbLettre = 0;
 
             for (int i = 0; i < MotTrouve.Length; i++)
             {
-                if (MotTrouve[i] != '_')
+                if (MotTrouve[i] != '_')        // Si le caractère n'est pas un _, alors c'est une lettre 
                 {
-                    NbLettre++;
+                    NbLettre++;         // on incrémente notre valeur de retour
                 }
             }
             return NbLettre;

@@ -70,54 +70,6 @@ namespace ProjetPendu
 
         }
 
-        public static void PropositionOrdi(string MotADeviner, char [] MotTrouve)
-        {
-            /* Nom : Propositions
-             * Objectif : Gère les propositions faites par l'ordinateur
-             * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur 
-             *                         char [] MotTrouve au mot avec les lettres trouvées et les _
-             * Variable de retour : void
-             * 
-             * TODO
-            */
-
-            char Lettre;
-            string MotPropose;
-            int NbLettre;
-            double RatioLettre;
-            bool MotJuste;
-
-            NbLettre = Fonctions.CompteLettreTrouvees(MotTrouve);
-            RatioLettre = (100 * NbLettre) / MotTrouve.Length;
-            Console.WriteLine("Ratio : " + RatioLettre);
-            if (RatioLettre < 50)       // Nombre de lettres devinées < 75%
-            {
-                // --------------- L'ordi proposer une lettre --------------- //
-                Lettre = Fonctions.PropositionLettreOrdi();                     // L'ordi propose une lettre
-                MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
-                AfficherMotADeviner(MotTrouve);
-            }
-
-            else // Nombre de lettres devinées < 75%
-            {
-                // ----------------- L'ordi proposer un mot ----------------- //
-                /* Si il y a 50% du mot */
-                MotPropose = Fonctions.PropositionMotOrdi(MotTrouve);
-                Console.WriteLine("L'ordinateur propose : {0}", MotPropose);
-                MotJuste = Fonctions.VerifierMot(MotPropose, MotADeviner);
-
-                if (MotJuste)
-                {
-                    Console.WriteLine("C'est la victoire ! Bravo à l'ordinateur !");
-                }
-                else
-                {
-                    Console.WriteLine("C'est perdu, dommage");
-                    Procedures.PartieAbandonnee(MotADeviner);
-                }
-            }
-                 
-            
-        }
+        
     }
 }

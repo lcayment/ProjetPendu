@@ -377,7 +377,7 @@ namespace ProjetPendu
                 }
                 else
                 {
-                    Console.WriteLine("C'est perdu, dommage");
+                    Console.WriteLine("C'est perdu ...");
                     Procedures.PartieAbandonnee(MotADeviner);
                 }
             }
@@ -424,10 +424,11 @@ namespace ProjetPendu
                 if (MotJuste)
                 {
                     Console.WriteLine("C'est la victoire ! Bravo à l'ordinateur !");
+                    
                 }
                 else
                 {
-                    Console.WriteLine("C'est perdu, dommage");
+                    Console.WriteLine("C'est perdu ...");
                     Procedures.PartieAbandonnee(MotADeviner);
                 }
             }
@@ -481,37 +482,40 @@ namespace ProjetPendu
             // Tant que l'utilisateur n'as pas rentré 1 ou 2, on réitère la question
             do
             {
-                Console.WriteLine("\n--------------------------------------------------------------------------------");
-                Console.WriteLine("Choississez une action : ");
-                Console.WriteLine("Tapez 1 pour afficher les règles !");
-                Console.WriteLine("Tapez 2 pour commencer la partie !");
-                stChoixDebut = Console.ReadLine();
-                IsOk = int.TryParse(stChoixDebut, out ChoixDebut);
-            } while (!IsOk || ChoixDebut < 1 || ChoixDebut > 2);
-            
-            if (ChoixDebut == 1)
-            {
-                // --------------- Affichage des règles --------------- //
-                Procedures.AfficherRegles();
-            }
-            else if (ChoixDebut == 2)
-            {
-                // ------------ Choix du nombre de joueurs ------------ //
-                NbJoueursHumains = Fonctions.ChoixNbJoueurs();
-                if (NbJoueursHumains == 1)     // Ordinateur contre humain 
+                do
                 {
-                    Roles = Fonctions.ChoixRoles();
+                    Console.WriteLine("\n--------------------------------------------------------------------------------");
+                    Console.WriteLine("Choississez une action : ");
+                    Console.WriteLine("Tapez 1 pour afficher les règles !");
+                    Console.WriteLine("Tapez 2 pour commencer la partie !");
+                    stChoixDebut = Console.ReadLine();
+                    IsOk = int.TryParse(stChoixDebut, out ChoixDebut);
+                } while (!IsOk || ChoixDebut < 1 || ChoixDebut > 2);
+
+                if (ChoixDebut == 1)
+                {
+                    // --------------- Affichage des règles --------------- //
+                    Procedures.AfficherRegles();
                 }
-                else if (NbJoueursHumains == 0)     // Ordinateur contre ordinateur
+                else if (ChoixDebut == 2)
                 {
-                            
-                }
-                else if (NbJoueursHumains == 2)     // Humain contre humain
-                {
+                    // ------------ Choix du nombre de joueurs ------------ //
+                    NbJoueursHumains = Fonctions.ChoixNbJoueurs();
+                    if (NbJoueursHumains == 1)     // Ordinateur contre humain 
+                    {
+                        Roles = Fonctions.ChoixRoles();
+                    }
+                    else if (NbJoueursHumains == 0)     // Ordinateur contre ordinateur
+                    {
+
+                    }
+                    else if (NbJoueursHumains == 2)     // Humain contre humain
+                    {
+
+                    }
 
                 }
-                    
-            }
+            } while (ChoixDebut != 2);
 
             return Roles;
         }
@@ -536,6 +540,111 @@ namespace ProjetPendu
                 }
             }
             return NbLettre;
+        }
+
+        public static bool ModeOrdinateurOrdinateur(string MotADeviner, int CmptTour, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie)
+        {
+            do
+            {
+                CmptTour++;
+                // L'ordinateur1 choisi un mot
+                if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
+                {
+                    //Permet de choisir le mot de l'ordinateur
+                    MotADeviner = Fonctions.ChoixMotOrdi();
+                    MotDonné = true;
+
+                    // Initialise le MotTrouve avec des _
+                    MotTrouve = new char[MotADeviner.Length];
+                    for (int i = 0; i < MotADeviner.Length; i++)
+                    {
+                        MotTrouve[i] = '_';
+                    }
+                }
+
+                // L'ordinateur2 fais une proposition
+                PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour);    // L'ordinateur fait une proposition (lettre ou mot)
+            } while ((ChoixPartie != 0) && (!PartieFinie));
+
+            return PartieFinie;
+        }
+
+        public static bool ModeHumainOrdinateur(string MotADeviner, int CmptTour, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie, int Roles)
+        {
+            do
+            {
+                CmptTour++;
+                if (Roles == 1)     // L'ordinateur devine
+                {
+                    if (MotDonné == false)      // Permet à au joueur humain de choisir le mot à deviner (et ce une unique fois, pas à chaque tour)
+                    {
+                        MotADeviner = Fonctions.ChoixMotHumain();
+                        MotDonné = true;
+
+                        // MotTrouve correspond au mot qui evoluera avec les nouvelles lettres trouvées
+                        MotTrouve = new char[MotADeviner.Length];       // MotTrouve est de la même longueur que le mot à deviner
+                                                                        // On initialise le MotTrouve avec des _
+                        for (int i = 0; i < MotADeviner.Length; i++)
+                        {
+                            MotTrouve[i] = '_';
+                        }
+                    }
+
+                    PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour);    // L'ordinateur fait une proposition (lettre ou mot)
+                }
+                else if (Roles == 0)    // Le joueur humain devine
+                {
+                    if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
+                    {
+                        //Permet de choisir le mot de l'ordinateur
+                        MotADeviner = Fonctions.ChoixMotOrdi();
+                        MotDonné = true;
+
+                        // Initialise le MotTrouve avec des _
+                        MotTrouve = new char[MotADeviner.Length];
+                        for (int i = 0; i < MotADeviner.Length; i++)
+                        {
+                            MotTrouve[i] = '_';
+                        }
+                    }
+                    PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve);
+                }
+                else
+                {
+                    Console.WriteLine("Erreur dans l'attributuion des rôles");
+                    PartieFinie = true;
+                }
+            } while ((ChoixPartie != 0) && (!PartieFinie));
+
+            return PartieFinie;
+        }
+
+        public static bool ModeHumainHumain(string MotADeviner, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie)
+        {
+            do
+            {
+                //Un joueur choisi un mot
+                if (MotDonné == false)      // Permet à au joueur humain de choisir le mot à deviner (et ce une unique fois, pas à chaque tour)
+                {
+                    MotADeviner = Fonctions.ChoixMotHumain();
+                    MotDonné = true;
+
+                    // MotTrouve correspond au mot qui evoluera avec les nouvelles lettres trouvées
+                    MotTrouve = new char[MotADeviner.Length];       // MotTrouve est de la même longueur que le mot à deviner
+                                                                    // On initialise le MotTrouve avec des _
+                    for (int i = 0; i < MotADeviner.Length; i++)
+                    {
+                        MotTrouve[i] = '_';
+                    }
+                    Console.Clear();
+                }
+
+                // Un joueur propose des lettres ou un mot
+                PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve);
+
+            } while ((ChoixPartie != 0) && (!PartieFinie));
+
+            return PartieFinie;
         }
     }
 }

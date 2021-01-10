@@ -42,8 +42,34 @@ namespace ProjetPendu
                 // ---------------  Suite de la partie --------------- // 
                 else if (ChoixPartie == 2)
                 {
+                    // ---------------  ORDINATEUR / ORDINATEUR --------------- // 
+                    if (NbJoueursHumains == 0)
+                    {
+                        do
+                        {
+                            CmptTour++;
+                            // L'ordinateur1 choisi un mot
+                            if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
+                            {
+                                //Permet de choisir le mot de l'ordinateur
+                                MotADeviner = Fonctions.ChoixMotOrdi();
+                                MotDonné = true;
+
+                                // Initialise le MotTrouve avec des _
+                                MotTrouve = new char[MotADeviner.Length];
+                                for (int i = 0; i < MotADeviner.Length; i++)
+                                {
+                                    MotTrouve[i] = '_';
+                                }
+                            }
+
+                            // L'ordinateur2 fais une proposition
+                            PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour);    // L'ordinateur fait une proposition (lettre ou mot)
+                        } while ((ChoixPartie != 0) && (!PartieFinie));
+                    }
+
                     // ---------------  ORDINATEUR / HUMAIN --------------- // 
-                    if (NbJoueursHumains == 1)                        
+                    else if (NbJoueursHumains == 1)                        
                     {
                         do
                         {
@@ -90,35 +116,35 @@ namespace ProjetPendu
                             }
                         } while ((ChoixPartie != 0) && (!PartieFinie));
                     }
-                    
-                    // ---------------  ORDINATEUR / ORDINATEUR --------------- // 
-                    else if (NbJoueursHumains == 0)
+
+                    // ---------------  HUMAIN / HUMAIN --------------- // 
+                    else if (NbJoueursHumains == 2)
                     {
                         do
                         {
-                            CmptTour++;
-                            // L'ordinateur1 choisi un mot
-                            if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
+                            //Un joueur choisi un mot
+                            if (MotDonné == false)      // Permet à au joueur humain de choisir le mot à deviner (et ce une unique fois, pas à chaque tour)
                             {
-                                //Permet de choisir le mot de l'ordinateur
-                                MotADeviner = Fonctions.ChoixMotOrdi();
+                                MotADeviner = Fonctions.ChoixMotHumain();
                                 MotDonné = true;
 
-                                // Initialise le MotTrouve avec des _
-                                MotTrouve = new char[MotADeviner.Length];
+                                // MotTrouve correspond au mot qui evoluera avec les nouvelles lettres trouvées
+                                MotTrouve = new char[MotADeviner.Length];       // MotTrouve est de la même longueur que le mot à deviner
+                                                                                // On initialise le MotTrouve avec des _
                                 for (int i = 0; i < MotADeviner.Length; i++)
                                 {
                                     MotTrouve[i] = '_';
                                 }
-                            }
+                                Console.Clear();
+                            }                         
+                            
+                            // Un joueur propose des lettres ou un mot
+                            PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve);
 
-                            // L'ordinateur2 fais une proposition
-                            PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour);    // L'ordinateur fait une proposition (lettre ou mot)
                         } while ((ChoixPartie != 0) && (!PartieFinie));
                     }
-                   
                 }
-
+                   
                 else
                 {
                     Console.WriteLine("Erreur sur l'action choisie");

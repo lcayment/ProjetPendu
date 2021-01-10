@@ -65,12 +65,12 @@ namespace ProjetPendu
             if(LettreJuste)
             {
                 Console.WriteLine("La lettre est juste !");
-
             }
             else
             {
                 Console.WriteLine("La lettre est fausse ...");
             }
+
             return MotTrouve;
         }
 
@@ -82,6 +82,7 @@ namespace ProjetPendu
                                       string MotADeviner = mot choisi par l'ordinateur ou le joueur humain comme mot à deviner
             * Variable de retour : bool MotJuste prend la valeur true si le mot est juste (victoire) ou la valeur false si le mot est faux (défaite : affichage pendu + mot à deviner)
             */
+
             bool MotJuste;
             if (MotDonne == MotADeviner)
             {
@@ -191,9 +192,20 @@ namespace ProjetPendu
             *                                                  1 si l'ordinateur devine
             */
 
-            Console.WriteLine("Si souhaites deviner le mot que l'ordinateur a choisi : tape 0");
-            Console.WriteLine("Si tu souhaites faire deviner le mot à l'ordinateur : tape 1");
-            int ModeJeu = int.Parse(Console.ReadLine());
+            int ModeJeu;
+            string stModeJeu;
+            bool IsOk;
+
+            // Tant que le mode de jeu donné n'est pas valide, on le redemande
+            do
+            {
+                Console.WriteLine("Si souhaites deviner le mot que l'ordinateur a choisi : tape 0");
+                Console.WriteLine("Si tu souhaites faire deviner le mot à l'ordinateur : tape 1");
+                stModeJeu = Console.ReadLine();
+                IsOk = int.TryParse(stModeJeu, out ModeJeu);
+
+            } while (!IsOk || ModeJeu != 0 && ModeJeu != 1);
+            
 
             if (ModeJeu == 0)
             {
@@ -218,7 +230,7 @@ namespace ProjetPendu
 
             char Lettre;
 
-            Console.WriteLine("Proposez une lettre en majuscules et sans accent :");
+            Console.WriteLine("\nProposez une lettre en majuscules et sans accent :");
             Lettre = char.Parse(Console.ReadLine());    // L'utilisateur propose une lettre
             
             return (Lettre);
@@ -246,6 +258,7 @@ namespace ProjetPendu
             * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'ordinateur de proposer une lettre
             * Paramètre(s) d'entrée : aucun
             * Variable de retour : char Lettre correspond à la lettre de retour venant de l'ordi
+            * 
             */
             char Lettre;
             var r = new Random();
@@ -308,13 +321,21 @@ namespace ProjetPendu
             */
 
             int ChoixPartie;
+            string stChoixPartie;
+            bool IsOk;
 
-            Console.WriteLine("\n--------------------------------------------------------------------------------");
-            Console.WriteLine("Tapez 0 pour abandonner !");
-            Console.WriteLine("Tapez 1 pour afficher les règles !");
-            Console.WriteLine("Tapez 2 pour continuer la partie !");
+            // Tant que l'utilisateur n'a pas rentré 0, 1 ou 2, on lui redemande ce qu'il veut faire
+            do
+            {
+                Console.WriteLine("\n--------------------------------------------------------------------------------");
+                Console.WriteLine("Tapez 0 pour abandonner !");
+                Console.WriteLine("Tapez 1 pour afficher les règles !");
+                Console.WriteLine("Tapez 2 pour continuer la partie !");
 
-            ChoixPartie = int.Parse(Console.ReadLine());
+                stChoixPartie = Console.ReadLine();
+                IsOk = int.TryParse(stChoixPartie, out ChoixPartie);
+
+            } while (!IsOk || ((ChoixPartie != 0) && (ChoixPartie != 1) && (ChoixPartie != 2)));
 
             return ChoixPartie;
         }
@@ -328,40 +349,44 @@ namespace ProjetPendu
             */
 
             int ChoixDebut;
+            string stChoixDebut;
             int Roles = -1;
             NbJoueursHumains = -1;
+            bool IsOk;
 
+            // Tant que l'utilisateur n'as pas rentré 1 ou 2, on réitère la question
             do
             {
                 Console.WriteLine("\n--------------------------------------------------------------------------------");
                 Console.WriteLine("Choississez une action : ");
                 Console.WriteLine("Tapez 1 pour afficher les règles !");
                 Console.WriteLine("Tapez 2 pour commencer la partie !");
-                ChoixDebut = int.Parse(Console.ReadLine());
-
-                if (ChoixDebut == 1)
+                stChoixDebut = Console.ReadLine();
+                IsOk = int.TryParse(stChoixDebut, out ChoixDebut);
+            } while (!IsOk || ChoixDebut < 1 || ChoixDebut > 2);
+            
+            if (ChoixDebut == 1)
+            {
+                // --------------- Affichage des règles --------------- //
+                Procedures.AfficherRegles();
+            }
+            else if (ChoixDebut == 2)
+            {
+                // ------------ Choix du nombre de joueurs ------------ //
+                do          // la boucle do while est pour l'instant nécessaire car les modes ordinateur seul et 2 joueurs humains ne sont pas encore implémentés
                 {
-                    // --------------- Affichage des règles --------------- //
-                    Procedures.AfficherRegles();
-                }
-                else if (ChoixDebut == 2)
-                {
-                    // ------------ Choix du nombre de joueurs ------------ //
-                    do          // la boucle do while est pour l'instant nécessaire car les modes ordinateur seul et 2 joueurs humains ne sont pas encore implémentés
+                    NbJoueursHumains = Fonctions.ChoixNbJoueurs();
+                    if (NbJoueursHumains == 1)     // Ordinateur contre humain 
                     {
-                        NbJoueursHumains = Fonctions.ChoixNbJoueurs();
-                        if (NbJoueursHumains == 1)     // Ordinateur contre humain 
-                        {
-                            Roles = Fonctions.ChoixRoles();
-                        }
-                        else if (NbJoueursHumains == 0)     // Ordinateur contre ordinateur
-                        {
+                        Roles = Fonctions.ChoixRoles();
+                    }
+                    else if (NbJoueursHumains == 0)     // Ordinateur contre ordinateur
+                    {
                             
-                        }
-                    } while ((NbJoueursHumains != 1) && (NbJoueursHumains != 0));
+                    }
+                } while ((NbJoueursHumains != 1) && (NbJoueursHumains != 0));
                     
-                }
-            } while (ChoixDebut != 2);
+            }
 
             return Roles;
         }
@@ -377,17 +402,22 @@ namespace ProjetPendu
 
             char Lettre;
             string MotPropose;
+
             int PropositionHumain;
+            string stPropositionHumain;
+
             bool MotJuste;
             bool PartieFinie = false;
+            bool IsOk;
 
+            // Tant que l'humain ne propose pas 1 ou 2, on lui redemande
             do
             {
-                Console.WriteLine("Si vous voulez proposer une lettre, tapez 1");
+                Console.WriteLine("\nSi vous voulez proposer une lettre, tapez 1");
                 Console.WriteLine("Si vous voulez proposer un mot, tapez 2");
-
-                PropositionHumain = int.Parse(Console.ReadLine());
-            } while ((PropositionHumain != 1) && (PropositionHumain != 2));
+                stPropositionHumain = Console.ReadLine();
+                IsOk = int.TryParse(stPropositionHumain, out PropositionHumain);
+            } while (!IsOk || (PropositionHumain != 1) && (PropositionHumain != 2));
 
 
             // --------------- L'humain veut proposer une lettre --------------- //
@@ -436,8 +466,8 @@ namespace ProjetPendu
             bool PartieFinie = false;
 
             NbLettre = CompteLettreTrouvees(MotTrouve);
-            RatioLettre = (100 * NbLettre) / MotTrouve.Length;
-            Console.WriteLine("\nRatio : " + RatioLettre);
+            RatioLettre = (100 * NbLettre) / MotTrouve.Length;      // On calcule le pourcentage de lettres trouvées
+
             if (RatioLettre < 50)       // Nombre de lettres devinées < 50%
             {
                 // --------------- L'ordi proposer une lettre --------------- //
@@ -451,7 +481,7 @@ namespace ProjetPendu
                 // ----------------- L'ordi proposer un mot ----------------- //
                 PartieFinie = true;         // Indique que la partie est terminée après la proposition du mot
                 MotPropose = PropositionMotOrdi(MotTrouve);
-                Console.WriteLine("L'ordinateur propose : {0}", MotPropose);
+                Console.WriteLine("\nL'ordinateur propose : {0}", MotPropose);
                 MotJuste = VerifierMot(MotPropose, MotADeviner);
 
                 if (MotJuste)

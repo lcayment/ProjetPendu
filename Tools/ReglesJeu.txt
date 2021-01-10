@@ -1,8 +1,12 @@
 --------------------------------------------------------------------------------
 VOICI LES REGLES : 
-Le Pendu est un jeu consistant à trouver un mot en devinant quelles sont les lettres qui le composent. 
-Le jeu se joue à deux. Tu peux choisir si tu souhaites deviner le mot que l'ordinateur a choisi, ou bien si tu souhaites faire deviner le mot à l'ordinateur.
+Le Pendu est un jeu consistant à trouver un mot en devinant les lettres qui le composent. 
+Le jeu se joue à deux. Il existe différente mode :
+1- Un joueur humain contre l'ordinateur : soit tu devines un mot choisi par l'ordinateur soit l'inverse !
+2- L'ordinateur joue contre lui-même : regarde l'ordinateur se défier lui-même !
+3- Deux joueurs humains l'un contre l'autre : ce mode n'a pas encore été développé, reviens pour une prochaine mise à jour !
 
+1- Un joueur humain contre l'ordinateur :
 DEVINE MOT DE L'ORDINATEUR
 Tu souhaites deviner le mot que l'ordinateur a choisi ? 
 Tu peux proposer jusqu'à 11 lettres, c'est à dire autant de traits qui peuvent être tracés pour dessiner le pendu. Dépassé ces 11 tentatives, tu as perdu.
@@ -14,5 +18,11 @@ Tu souhaites faire deviner ton mot à l'ordinateur ?
 Rentre un mot valide du dictionnaire et laisse l'ordinateur proposer une lettre ou un mot. L'ordinateur a 11 tentatives tout comme toi.
 C'est à toi de dire si l'ordinateur si sa proposition est juste ou fausse. Au delà de 11 tentatives, l'ordinateur perd.
 
-Alors près à jouer ? 
+2- L'ordinateur contre lui-même :
+Ici tu n'as rien à faire, seulement observer la partie !
+
+3- Deux joueurs humains contre l'autre :
+Pas encore développé ...
+
+Alors prêt à jouer ? 
 --------------------------------------------------------------------------------

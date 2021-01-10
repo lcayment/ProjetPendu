@@ -252,7 +252,7 @@ namespace ProjetPendu
             return (MotPropose);
         }
 
-        public static char PropositionLettreOrdi()
+        public static char PropositionLettreOrdi(int CmptTour)
         {
             /* Nom : PropositionLettreOrdi
             * Objectif : Cette fonction n'est exécutée que lorsqu'il n'y a qu'1 joueur humain et elle permet à l'ordinateur de proposer une lettre
@@ -260,13 +260,11 @@ namespace ProjetPendu
             * Variable de retour : char Lettre correspond à la lettre de retour venant de l'ordi
             * 
             */
-            char Lettre;
-            var r = new Random();
+            char[] Alphabet = { 'E', 'A', 'I', 'S', 'N', 'R', 'T', 'O', 'L', 'U', 'D', 'C', 'M', 'P', 'G', 'B', 'V', 'H', 'F', 'Q', 'Y', 'X', 'J', 'K', 'W', 'Z' };
 
-            Lettre = (char)r.Next('A', 'Z');
-            Console.WriteLine("\nL'ordinateur propose la lettre : {0} ", Lettre);
+            Console.WriteLine("\nL'ordinateur propose la {0}e lettre du tableau : {1} ",CmptTour, Alphabet[CmptTour]);
 
-            return Lettre;
+            return Alphabet[CmptTour];
         }
 
         public static string PropositionMotOrdi(char[] MotTrouve)
@@ -448,7 +446,7 @@ namespace ProjetPendu
 
         }
 
-        public static bool PropositionOrdi(string MotADeviner, char[] MotTrouve)
+        public static bool PropositionOrdi(string MotADeviner, char[] MotTrouve, int CmptTour)
         {
             /* Nom : Propositions
              * Objectif : Gère les propositions faites par l'ordinateur
@@ -471,7 +469,7 @@ namespace ProjetPendu
             if (RatioLettre < 50)       // Nombre de lettres devinées < 50%
             {
                 // --------------- L'ordi proposer une lettre --------------- //
-                Lettre = PropositionLettreOrdi();                     // L'ordi propose une lettre
+                Lettre = PropositionLettreOrdi(CmptTour);                     // L'ordi propose une lettre
                 MotTrouve = VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
                 Procedures.AfficherMotADeviner(MotTrouve);
             }

@@ -15,7 +15,7 @@ namespace ProjetPendu
             bool MotDonné = false;
             char[] MotTrouve = new char[40];     // la taille est attribuée au hasard
             bool PartieFinie = false;
-
+            int CmptTour = 0;
             /* --------------- */
 
             /* DEBUT DE PARTIE */
@@ -24,7 +24,6 @@ namespace ProjetPendu
             /* LA PARTIE COMMENCE */
             do
             {
-                
                 ChoixPartie = Fonctions.ActionsTour();        // Présentation des actions possibles à chaque tour
 
                 // --------------- Abandon de la partie --------------- //
@@ -48,6 +47,7 @@ namespace ProjetPendu
                     {
                         do
                         {
+                            CmptTour++;
                             if (Roles == 1)     // L'ordinateur devine
                             {
                                 if (MotDonné == false)      // Permet à au joueur humain de choisir le mot à deviner (et ce une unique fois, pas à chaque tour)
@@ -64,7 +64,7 @@ namespace ProjetPendu
                                     }
                                 }
 
-                                PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve);    // L'ordinateur fait une proposition (lettre ou mot)
+                                PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour);    // L'ordinateur fait une proposition (lettre ou mot)
                             }
                             else if (Roles == 0)    // Le joueur humain devine
                             {
@@ -96,6 +96,7 @@ namespace ProjetPendu
                     {
                         do
                         {
+                            CmptTour++;
                             // L'ordinateur1 choisi un mot
                             if (MotDonné == false)      // Permet de choisir le mot de l'ordinateur une seule fois (et pas à chaque tour)
                             {
@@ -112,7 +113,7 @@ namespace ProjetPendu
                             }
 
                             // L'ordinateur2 fais une proposition
-                            PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve);    // L'ordinateur fait une proposition (lettre ou mot)
+                            PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour);    // L'ordinateur fait une proposition (lettre ou mot)
                         } while ((ChoixPartie != 0) && (!PartieFinie));
                     }
                    

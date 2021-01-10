@@ -53,23 +53,39 @@ namespace ProjetPendu
             */
 
             bool LettreJuste = false;
+            bool LettreDejaDonnee = false;
+
             // On parcourt le mot choisi (qui est un tableau de char) pour comparer chaque lettre du mot avec la lettre donnée
             for (int i = 0; i < MotChoisi.Length; i++)
             {
-                if (MotChoisi[i] == Lettre)
-                {     
-                    MotTrouve[i] = Lettre;
-                    LettreJuste = true;
+                if (MotTrouve[i] == Lettre)
+                {
+                    LettreDejaDonnee = true;
+                }
+                else
+                {
+                    if (MotChoisi[i] == Lettre)
+                    {
+                        MotTrouve[i] = Lettre;
+                        LettreJuste = true;
+                    }
                 }       
             }
 
-            if(LettreJuste)
+            if (LettreDejaDonnee)
             {
-                Console.WriteLine("La lettre est juste !");
+                Console.WriteLine("La lettre a deja été donnée");
             }
             else
             {
-                Console.WriteLine("La lettre est fausse ...");
+                if (LettreJuste)
+                {
+                    Console.WriteLine("La lettre est juste !");
+                }
+                else
+                {
+                    Console.WriteLine("La lettre est fausse ...");
+                }
             }
 
             return MotTrouve;

@@ -41,7 +41,7 @@ namespace ProjetPendu
             {
                 Console.Write(MotTrouve[i]);
             }
-           
+
         }
 
         public static void PartieAbandonnee(string MotADeviner)
@@ -52,6 +52,34 @@ namespace ProjetPendu
              * Variable de retour : void
             */
 
+            Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
+            Console.WriteLine("Dommage !");
+            string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu.txt");
+            Console.WriteLine("--------------------------------------------------------------------------------");
+
+            try
+            {
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+
+            }
+            catch (Exception ex)
+            {
+                // Code exécuté en cas d'exception 
+                Console.Write("Une erreur est survenue au cours de l'affichage du pendu");
+            }
+        }
+
+        public static void PartiePerdue(string MotADeviner)
+        {
+            /* Nom : PartiePerdue
+             * Objectif :  Affiche message partie finie quand le joueur a utilisée toutes ses tentatives
+             * Paramètre(s) d'entrée : string MotADeviner = mot qui était à deviner
+             * Variable de retour : void
+            */
+
+            Console.WriteLine("Perduuuuuuuuu ! BOUUUUUUUH LE/LA NUL.LE");
+            Console.WriteLine("Tu as utilisé toutes les tentatives !");
             Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
             Console.WriteLine("Dommage !");
             string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu.txt");

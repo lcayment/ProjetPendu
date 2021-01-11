@@ -284,7 +284,7 @@ namespace ProjetPendu
             */
             char[] Alphabet = { 'E', 'A', 'I', 'S', 'N', 'R', 'T', 'O', 'L', 'U', 'D', 'C', 'M', 'P', 'G', 'B', 'V', 'H', 'F', 'Q', 'Y', 'X', 'J', 'K', 'W', 'Z' };
 
-            Console.WriteLine("\nL'ordinateur propose la lettre : {0} ",CmptTour, Alphabet[CmptTour]);
+            Console.WriteLine("\nL'ordinateur propose la lettre : {0} ", Alphabet[CmptTour]);
 
             return Alphabet[CmptTour];
         }
@@ -356,22 +356,28 @@ namespace ProjetPendu
             {
                 Console.WriteLine("\nSi vous voulez proposer une lettre, tapez 1");
                 Console.WriteLine("Si vous voulez proposer un mot, tapez 2");
+                Console.WriteLine("Si vous voulez abandonner, tapez 0");
 
                 // Permet de tester le type de la variable entrée, si ca n'est pas un int IsOk est false et la boucle recommence
                 stPropositionHumain = Console.ReadLine();
                 IsOk = int.TryParse(stPropositionHumain, out PropositionHumain);
-            } while (!IsOk || (PropositionHumain != 1) && (PropositionHumain != 2));
+            } while (!IsOk || (PropositionHumain != 1) && (PropositionHumain != 2) && (PropositionHumain != 0));
 
-
+            // --------------- L'humain veut abandonner --------------- //
+            if (PropositionHumain == 0)
+            {
+                PartieFinie = true;         // Indique que la partie est terminée
+                Procedures.PartieAbandonnee(MotADeviner);
+            }
             // --------------- L'humain veut proposer une lettre --------------- //
-            if (PropositionHumain == 1)
+            else if (PropositionHumain == 1)
             {
                 Lettre = Fonctions.PropositionLettreHumain();                   // L'humain propose une lettre
                 MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve);     // On vérifie si la lettre est présente dans le mot
                 Procedures.AfficherMotADeviner(MotTrouve);
             }
 
-            // --------------- L'humain veut proposer un mot --------------- //     TODO
+            // --------------- L'humain veut proposer un mot --------------- // 
             else if (PropositionHumain == 2)
             {
                 PartieFinie = true;         // Indique que la partie est terminée après la proposition du mot

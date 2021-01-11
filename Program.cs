@@ -42,7 +42,6 @@ namespace ProjetPendu
                 // ---------------  Suite de la partie --------------- // 
                 else if (ChoixPartie == 2)
                 {
-                    Console.WriteLine("nbjoueurs humains "+NbJoueursHumains);
                     if(NbJoueursHumains == 0)
                     {
                         PartieFinie = Fonctions.ModeOrdinateurOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie);

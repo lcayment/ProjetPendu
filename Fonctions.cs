@@ -173,6 +173,8 @@ namespace ProjetPendu
                 Console.WriteLine("\n--------------------------------------------------------------------------------");
                 Console.WriteLine("Tape 0 pour que l'ordinateur joue seul \nTape 1 si tu veux jouer avec l'ordinateur \nTape 2 si tu veux joueur contre un autre humain !");
                 Console.WriteLine("\nAlors ? Combien y-a-t-il de joueurs ?");
+                
+                // Permet de tester le type de la variable entrée, si ca n'est pas un int IsOk est false et la boucle recommence
                 stNbJoueurHumain = Console.ReadLine();
                 IsOk = int.TryParse(stNbJoueurHumain, out NbJoueurHumain);
             } while (!IsOk || NbJoueurHumain < 0);
@@ -218,6 +220,8 @@ namespace ProjetPendu
             {
                 Console.WriteLine("Si souhaites deviner le mot que l'ordinateur a choisi : tape 0");
                 Console.WriteLine("Si tu souhaites faire deviner le mot à l'ordinateur : tape 1");
+                
+                // Permet de tester le type de la variable entrée, si ca n'est pas un int IsOk est false et la boucle recommence
                 stModeJeu = Console.ReadLine();
                 IsOk = int.TryParse(stModeJeu, out ModeJeu);
 
@@ -280,7 +284,7 @@ namespace ProjetPendu
             */
             char[] Alphabet = { 'E', 'A', 'I', 'S', 'N', 'R', 'T', 'O', 'L', 'U', 'D', 'C', 'M', 'P', 'G', 'B', 'V', 'H', 'F', 'Q', 'Y', 'X', 'J', 'K', 'W', 'Z' };
 
-            Console.WriteLine("\nL'ordinateur propose la {0}e lettre du tableau : {1} ",CmptTour, Alphabet[CmptTour]);
+            Console.WriteLine("\nL'ordinateur propose la lettre : {0} ",CmptTour, Alphabet[CmptTour]);
 
             return Alphabet[CmptTour];
         }
@@ -352,6 +356,8 @@ namespace ProjetPendu
             {
                 Console.WriteLine("\nSi vous voulez proposer une lettre, tapez 1");
                 Console.WriteLine("Si vous voulez proposer un mot, tapez 2");
+
+                // Permet de tester le type de la variable entrée, si ca n'est pas un int IsOk est false et la boucle recommence
                 stPropositionHumain = Console.ReadLine();
                 IsOk = int.TryParse(stPropositionHumain, out PropositionHumain);
             } while (!IsOk || (PropositionHumain != 1) && (PropositionHumain != 2));
@@ -457,6 +463,7 @@ namespace ProjetPendu
                 Console.WriteLine("Tapez 1 pour afficher les règles !");
                 Console.WriteLine("Tapez 2 pour continuer la partie !");
 
+                // Permet de tester le type de la variable entrée, si ca n'est pas un int IsOk est false et la boucle recommence
                 stChoixPartie = Console.ReadLine();
                 IsOk = int.TryParse(stChoixPartie, out ChoixPartie);
 
@@ -488,6 +495,8 @@ namespace ProjetPendu
                     Console.WriteLine("Choississez une action : ");
                     Console.WriteLine("Tapez 1 pour afficher les règles !");
                     Console.WriteLine("Tapez 2 pour commencer la partie !");
+
+                    // Permet de tester le type de la variable entrée, si ca n'est pas un int IsOk est false et la boucle recommence
                     stChoixDebut = Console.ReadLine();
                     IsOk = int.TryParse(stChoixDebut, out ChoixDebut);
                 } while (!IsOk || ChoixDebut < 1 || ChoixDebut > 2);
@@ -631,7 +640,8 @@ namespace ProjetPendu
 
                     // MotTrouve correspond au mot qui evoluera avec les nouvelles lettres trouvées
                     MotTrouve = new char[MotADeviner.Length];       // MotTrouve est de la même longueur que le mot à deviner
-                                                                    // On initialise le MotTrouve avec des _
+                    
+                    // On initialise le MotTrouve avec des _
                     for (int i = 0; i < MotADeviner.Length; i++)
                     {
                         MotTrouve[i] = '_';

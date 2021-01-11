@@ -46,6 +46,7 @@ namespace ProjetPendu
                 {
                     if (NbJoueursHumains == 0)
                     {
+                        Console.WriteLine("\ntentative main= " + Tentative);
                         PartieFinie = Fonctions.ModeOrdinateurOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, Tentative);
                     }
                     else if (NbJoueursHumains == 1)

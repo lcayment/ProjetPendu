@@ -438,8 +438,9 @@ namespace ProjetPendu
             bool MotJuste;
             bool PartieFinie = false;
 
+            Console.WriteLine("\ntentative Porposition Ordi avant ++ = " + Tentative);
             Tentative++;
-            Console.WriteLine("tentative Porposition Ordi= " + Tentative);
+            Console.WriteLine("\ntentative Porposition Ordi= " + Tentative);
             if (Tentative == 11)
             {
                 Procedures.PartiePerdue(MotADeviner);
@@ -611,6 +612,7 @@ namespace ProjetPendu
                 }
 
                 // L'ordinateur2 fais une proposition
+                Console.WriteLine("\ntentative Mode ordi ordi = " + Tentative);
                 PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour, Tentative);    // L'ordinateur fait une proposition (lettre ou mot)
             } while ((ChoixPartie != 0) && (!PartieFinie));
 

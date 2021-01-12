@@ -272,6 +272,8 @@ namespace ProjetPendu
              * Objectif : Demande à l'humain un mot ou une lettre qui sera vérifié par VerifierLettre ou VerifierMot selon le choix de l'humain
              * Paramètre(s) d'entrée : string MotADeviner correspond au mot choisi par l'ordinateur
              *                         char [] MotTrouve au mot avec les lettres trouvées et les _
+             *                         ref int Tentative correspond au nombre de tentatives restantes
+             *                         ref int Pendu correspond à un indice pour l'affichage du pendu (en réalité c'est le nb de tentatives restates)
              * Variable de retour : bool PartieFinie = signale si la partie se termine (prend la valeur true lorsque le joueur propose un mot)
             */
 

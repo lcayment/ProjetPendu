@@ -78,7 +78,7 @@ namespace ProjetPendu
              * Variable de retour : void
             */
 
-            Console.WriteLine("Perduuuuuuuuu ! BOUUUUUUUH LE/LA NUL.LE");
+            Console.WriteLine("\nPerduuuuuuuuu ! BOUUUUUUUH LE/LA NUL.LE");
             Console.WriteLine("Tu as utilisé toutes les tentatives !");
             Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
             Console.WriteLine("Dommage !");
@@ -99,5 +99,81 @@ namespace ProjetPendu
 
         }
 
+<<<<<<< HEAD
+=======
+        public static void AfficherPendu (ref int Pendu)
+        {
+            if (Pendu ==10)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu10.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+
+            }
+            else if (Pendu == 9)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu9.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+
+            }
+            else if (Pendu == 8)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu8.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+
+            }
+            else if (Pendu == 7)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu7.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+            }
+            else if (Pendu == 6)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu6.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+
+            }
+            else if (Pendu == 5)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu5.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+
+            }
+            else if (Pendu == 4)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu4.txt"); 
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+
+            }
+            else if (Pendu == 3)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu3.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+
+            }
+            else if (Pendu == 2)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu2.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+            }
+            else if (Pendu == 1)
+            {
+                string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu1.txt");
+                // Affiche le contenu du fichier
+                System.Console.WriteLine(text);
+            }
+        }
+
+
+
+>>>>>>> 579acf5d0232456de59ec6dbcf6c7ee8b768d246
     }
 }

@@ -42,7 +42,7 @@ namespace ProjetPendu
             return MotDansDictionnaire;
         }
 
-        public static char[] VerifierLettre(char Lettre, string MotChoisi, char[] MotTrouve, int Tentative)
+        public static char[] VerifierLettre(char Lettre, string MotChoisi, char[]  MotTrouve, ref int Tentative)
         {
             /* Nom : VerifierLettre
              * Objectif : Verifie si la lettre donnée est juste ou fausse
@@ -54,19 +54,6 @@ namespace ProjetPendu
 
             bool LettreJuste = false;
             bool LettreDejaDonnee = false;
-
-            //La variable tentative s'incrémente seulement lorsque le joueur propose un mot
-            //On récupère Tentative dans le main pour mettre cette variable en condition while<=11 pour continuer à jouer
-            // ou pour dire si le joueur a perdu 
-            /*Console.WriteLine("Tentative ="+Tentative);
-            Tentative++;
-            Console.WriteLine("tentative ="+Tentative);
-            Console.WriteLine("Il vous reste " + (11 - Tentative) + " tentatives");
-            if (Tentative>=11)
-            {
-                Procedures.PartiePerdue(MotChoisi);
-            }
-            */
 
             // On parcourt le mot choisi (qui est un tableau de char) pour comparer chaque lettre du mot avec la lettre donnée
             for (int i = 0; i < MotChoisi.Length; i++)
@@ -88,6 +75,7 @@ namespace ProjetPendu
             if (LettreDejaDonnee)
             {
                 Console.WriteLine("La lettre a deja été donnée");
+                Tentative--;
             }
             else
             {
@@ -98,8 +86,11 @@ namespace ProjetPendu
                 else
                 {
                     Console.WriteLine("La lettre est fausse ...");
+                    Tentative--;
                 }
             }
+            Console.WriteLine("Il vous reste {0} tentatives", Tentative);
+            
             return MotTrouve;
 
         }
@@ -346,7 +337,7 @@ namespace ProjetPendu
             return MotPropose;
         }
 
-        public static bool PropositionHumain(string MotADeviner, char[] MotTrouve, int Tentative)
+        public static bool PropositionHumain(string MotADeviner, char[] MotTrouve, ref int Tentative)
         {
             /* Nom : PropositionHumain
              * Objectif : Demande à l'humain un mot ou une lettre et le/la verifie
@@ -358,7 +349,6 @@ namespace ProjetPendu
             char Lettre;
             string MotPropose;
 
-
             int PropositionHumain;
             string stPropositionHumain;
 
@@ -366,62 +356,62 @@ namespace ProjetPendu
             bool PartieFinie = false;
             bool IsOk;
 
-            Tentative++;
-            Console.WriteLine("tentative propositionHumain = " + Tentative);
-            if (Tentative == 11)
+            if (Tentative == 0)
             {
                 Procedures.PartiePerdue(MotADeviner);
-            }
-
-
-            // Tant que l'humain ne propose pas 1 ou 2, on lui redemande
-            do
-            {
-                Console.WriteLine("\nSi vous voulez proposer une lettre, tapez 1");
-                Console.WriteLine("Si vous voulez proposer un mot, tapez 2");
-                Console.WriteLine("Si vous voulez abandonner, tapez 0");
-
-                // Permet de tester le type de la variable entrée, si ca n'est pas un int IsOk est false et la boucle recommence
-                stPropositionHumain = Console.ReadLine();
-                IsOk = int.TryParse(stPropositionHumain, out PropositionHumain);
-
-            } while (!IsOk || (PropositionHumain != 1) && (PropositionHumain != 2) && (PropositionHumain != 0));
-
-            // --------------- L'humain veut abandonner --------------- //
-            if (PropositionHumain == 0)
-            {
                 PartieFinie = true;
-                Procedures.PartieAbandonnee(MotADeviner);
             }
-            // --------------- L'humain veut proposer une lettre --------------- //
-            else if (PropositionHumain == 1)
+            else
             {
-                Lettre = Fonctions.PropositionLettreHumain();                   // L'humain propose une lettre
-                MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve, Tentative);     // On vérifie si la lettre est présente dans le mot
-                Procedures.AfficherMotADeviner(MotTrouve);
+                // Tant que l'humain ne propose pas 1 ou 2, on lui redemande
+                do
+                {
+                    Console.WriteLine("\nSi vous voulez proposer une lettre, tapez 1");
+                    Console.WriteLine("Si vous voulez proposer un mot, tapez 2");
+                    Console.WriteLine("Si vous voulez abandonner, tapez 0");
 
-            }
-            // --------------- L'humain veut proposer un mot --------------- //     TODO
-            else if (PropositionHumain == 2)
-            {
-                PartieFinie = true;         // Indique que la partie est terminée après la proposition du mot
-                MotPropose = Fonctions.PropositionMotHumain();
-                MotJuste = Fonctions.VerifierMot(MotPropose, MotADeviner);
-                if (MotJuste)
+                    // Permet de tester le type de la variable entrée, si ca n'est pas un int IsOk est false et la boucle recommence
+                    stPropositionHumain = Console.ReadLine();
+                    IsOk = int.TryParse(stPropositionHumain, out PropositionHumain);
+
+                } while (!IsOk || (PropositionHumain != 1) && (PropositionHumain != 2) && (PropositionHumain != 0));
+
+                // --------------- L'humain veut abandonner --------------- //
+                if (PropositionHumain == 0)
                 {
-                    Console.WriteLine("C'est la victoire ! Bravo au joueur qui devait deviner !");
-                }
-                else
-                {
-                    Console.WriteLine("C'est perdu ...");
+                    PartieFinie = true;
                     Procedures.PartieAbandonnee(MotADeviner);
+                }
+                // --------------- L'humain veut proposer une lettre --------------- //
+                else if (PropositionHumain == 1)
+                {
+
+                    Lettre = Fonctions.PropositionLettreHumain();                   // L'humain propose une lettre
+                    MotTrouve = Fonctions.VerifierLettre(Lettre, MotADeviner, MotTrouve, ref Tentative);     // On vérifie si la lettre est présente dans le mot
+                    Procedures.AfficherMotADeviner(MotTrouve);
+                }
+                // --------------- L'humain veut proposer un mot --------------- //     TODO
+                else if (PropositionHumain == 2)
+                {
+                    PartieFinie = true;         // Indique que la partie est terminée après la proposition du mot
+                    MotPropose = Fonctions.PropositionMotHumain();
+                    MotJuste = Fonctions.VerifierMot(MotPropose, MotADeviner);
+                    if (MotJuste)
+                    {
+                        Console.WriteLine("C'est la victoire ! Bravo au joueur qui devait deviner !");
+                    }
+                    else
+                    {
+                        Console.WriteLine("C'est perdu ...");
+                        Procedures.PartieAbandonnee(MotADeviner);
+                    }
                 }
             }
             return PartieFinie;
 
         }
 
-        public static bool PropositionOrdi(string MotADeviner, char[] MotTrouve, int CmptTour, int Tentative)
+        public static bool PropositionOrdi(string MotADeviner, char[] MotTrouve, int CmptTour, ref int Tentative)
         {
             /* Nom : Propositions
              * Objectif : Gère les propositions faites par l'ordinateur
@@ -438,14 +428,6 @@ namespace ProjetPendu
             bool MotJuste;
             bool PartieFinie = false;
 
-            Console.WriteLine("\ntentative Porposition Ordi avant ++ = " + Tentative);
-            Tentative++;
-            Console.WriteLine("\ntentative Porposition Ordi= " + Tentative);
-            if (Tentative == 11)
-            {
-                Procedures.PartiePerdue(MotADeviner);
-            }
-
             NbLettre = CompteLettreTrouvees(MotTrouve);
             RatioLettre = (100 * NbLettre) / MotTrouve.Length;      // On calcule le pourcentage de lettres trouvées
 
@@ -453,7 +435,7 @@ namespace ProjetPendu
             {
                 // --------------- L'ordi proposer une lettre --------------- //
                 Lettre = PropositionLettreOrdi(CmptTour);                     // L'ordi propose une lettre
-                MotTrouve = VerifierLettre(Lettre, MotADeviner, MotTrouve, Tentative);     // On vérifie si la lettre est présente dans le mot
+                MotTrouve = VerifierLettre(Lettre, MotADeviner, MotTrouve, ref Tentative);     // On vérifie si la lettre est présente dans le mot
                 Procedures.AfficherMotADeviner(MotTrouve);
             }
 
@@ -591,7 +573,7 @@ namespace ProjetPendu
             return NbLettre;
         }
 
-        public static bool ModeOrdinateurOrdinateur(string MotADeviner, int CmptTour, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie, int Tentative)
+        public static bool ModeOrdinateurOrdinateur(string MotADeviner, int CmptTour, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie, ref int Tentative)
         {
             do
             {
@@ -612,14 +594,13 @@ namespace ProjetPendu
                 }
 
                 // L'ordinateur2 fais une proposition
-                Console.WriteLine("\ntentative Mode ordi ordi = " + Tentative);
-                PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour, Tentative);    // L'ordinateur fait une proposition (lettre ou mot)
+                PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour, ref Tentative);    // L'ordinateur fait une proposition (lettre ou mot)
             } while ((ChoixPartie != 0) && (!PartieFinie));
 
             return PartieFinie;
         }
 
-        public static bool ModeHumainOrdinateur(string MotADeviner, int CmptTour, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie, int Roles, int Tentative)
+        public static bool ModeHumainOrdinateur(string MotADeviner, int CmptTour, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie, int Roles, ref int Tentative)
         {
             do
             {
@@ -640,7 +621,7 @@ namespace ProjetPendu
                         }
                     }
 
-                    PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour, Tentative);    // L'ordinateur fait une proposition (lettre ou mot)
+                    PartieFinie = Fonctions.PropositionOrdi(MotADeviner, MotTrouve, CmptTour, ref Tentative);    // L'ordinateur fait une proposition (lettre ou mot)
                 }
                 else if (Roles == 0)    // Le joueur humain devine
                 {
@@ -657,7 +638,7 @@ namespace ProjetPendu
                             MotTrouve[i] = '_';
                         }
                     }
-                    PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve, Tentative);
+                    PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve, ref Tentative);
                 }
                 else
                 {
@@ -669,7 +650,7 @@ namespace ProjetPendu
             return PartieFinie;
         }
 
-        public static bool ModeHumainHumain(string MotADeviner, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie, int Tentative)
+        public static bool ModeHumainHumain(string MotADeviner, bool MotDonné, char[] MotTrouve, bool PartieFinie, int ChoixPartie, ref int Tentative)
         {
             do
             {
@@ -690,7 +671,7 @@ namespace ProjetPendu
                 }
 
                 // Un joueur propose des lettres ou un mot
-                PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve, Tentative);
+                PartieFinie = Fonctions.PropositionHumain(MotADeviner, MotTrouve, ref Tentative);
 
             } while ((ChoixPartie != 0) && (!PartieFinie));
             return PartieFinie;

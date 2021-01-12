@@ -16,7 +16,7 @@ namespace ProjetPendu
             char[] MotTrouve = new char[40];     // la taille est attribuée au hasard
             bool PartieFinie = false;           // variable indiquant la fin de la partie
             int CmptTour = 0;                   // compte le tour de jeu
-            int Tentative = 0;                  // compte le nombre de tentatives restantes
+            int Tentative = 11;                  // compte le nombre de tentatives restantes
 
             /* --------------- */
 
@@ -46,16 +46,15 @@ namespace ProjetPendu
                 {
                     if (NbJoueursHumains == 0)
                     {
-                        Console.WriteLine("\ntentative main= " + Tentative);
-                        PartieFinie = Fonctions.ModeOrdinateurOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, Tentative);
+                        PartieFinie = Fonctions.ModeOrdinateurOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, ref Tentative);
                     }
                     else if (NbJoueursHumains == 1)
                     {
-                        PartieFinie = Fonctions.ModeHumainOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, Roles, Tentative);
+                        PartieFinie = Fonctions.ModeHumainOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, Roles, ref Tentative);
                     }
                     else if (NbJoueursHumains == 2)
                     {
-                        PartieFinie = Fonctions.ModeHumainHumain(MotADeviner, MotDonné, MotTrouve, PartieFinie, ChoixPartie, Tentative);
+                        PartieFinie = Fonctions.ModeHumainHumain(MotADeviner, MotDonné, MotTrouve, PartieFinie, ChoixPartie, ref Tentative);
                     }
                 }
 

@@ -17,7 +17,6 @@ namespace ProjetPendu
             bool PartieFinie = false;           // variable indiquant la fin de la partie
             int CmptTour = 0;                   // compte le tour de jeu
             int Tentative = 11;                  // compte le nombre de tentatives restantes
-            int Pendu = Tentative;         // est récupérée pour afficher le pendu en fonction des propositions fausses
 
             /* --------------- */
 
@@ -47,15 +46,15 @@ namespace ProjetPendu
                 {
                     if (NbJoueursHumains == 0)
                     {
-                        PartieFinie = Fonctions.ModeOrdinateurOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, ref Tentative, ref Pendu);
+                        PartieFinie = Fonctions.ModeOrdinateurOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, ref Tentative);
                     }
                     else if (NbJoueursHumains == 1)
                     {
-                        PartieFinie = Fonctions.ModeHumainOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, Roles, ref Tentative, ref Pendu);
+                        PartieFinie = Fonctions.ModeHumainOrdinateur(MotADeviner, CmptTour, MotDonné, MotTrouve, PartieFinie, ChoixPartie, Roles, ref Tentative);
                     }
                     else if (NbJoueursHumains == 2)
                     {
-                        PartieFinie = Fonctions.ModeHumainHumain(MotADeviner, MotDonné, MotTrouve, PartieFinie, ChoixPartie, ref Tentative, ref Pendu);
+                        PartieFinie = Fonctions.ModeHumainHumain(MotADeviner, MotDonné, MotTrouve, PartieFinie, ChoixPartie, ref Tentative);
                     }
                 }
 

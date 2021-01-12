@@ -98,9 +98,16 @@ namespace ProjetPendu
             }
 
         }
+
         public static void AfficherPendu (ref int Pendu)
         {
-            if (Pendu ==10)
+            /* Nom : AfficherPendu
+             * Objectif :  Affiche le pendu en fonction du nombre de tentatives restantes
+             * Paramètre(s) d'entrée : ref int Pendu = nombre de tentatives restantes
+             * Variable de retour : void
+            */
+
+            if (Pendu == 10)
             {
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu10.txt");
                 // Affiche le contenu du fichier

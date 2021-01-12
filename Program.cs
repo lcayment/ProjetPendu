@@ -11,7 +11,7 @@ namespace ProjetPendu
             /* VARIABLES */
             int Roles;
             int ChoixPartie;
-            string MotADeviner = "null";
+            string MotADeviner = "null";        
             bool MotDonné = false;
             char[] MotTrouve = new char[40];     // la taille est attribuée au hasard
             bool PartieFinie = false;           // variable indiquant la fin de la partie

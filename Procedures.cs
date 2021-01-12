@@ -15,6 +15,7 @@ namespace ProjetPendu
              * Variable de retour : void
             */
 
+            //Récupere le fichier texte écrit au préalable 
             string text = System.IO.File.ReadAllText(@"..\..\..\Tools\ReglesJeu.txt");
 
             try
@@ -54,6 +55,8 @@ namespace ProjetPendu
 
             Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
             Console.WriteLine("Dommage !");
+
+            //Récupere le fichier texte écrit au préalable
             string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu.txt");
             Console.WriteLine("--------------------------------------------------------------------------------");
 
@@ -82,6 +85,7 @@ namespace ProjetPendu
             Console.WriteLine("Tu as utilisé toutes les tentatives !");
             Console.WriteLine("Le mot à deviner était {0}", MotADeviner);
             Console.WriteLine("Dommage !");
+            //Récupere le fichier texte écrit au préalable
             string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu.txt");
             Console.WriteLine("--------------------------------------------------------------------------------");
 
@@ -109,6 +113,7 @@ namespace ProjetPendu
 
             if (Pendu == 10)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu10.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
@@ -116,6 +121,7 @@ namespace ProjetPendu
             }
             else if (Pendu == 9)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu9.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
@@ -123,6 +129,7 @@ namespace ProjetPendu
             }
             else if (Pendu == 8)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu8.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
@@ -130,12 +137,14 @@ namespace ProjetPendu
             }
             else if (Pendu == 7)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu7.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
             }
             else if (Pendu == 6)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu6.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
@@ -143,6 +152,7 @@ namespace ProjetPendu
             }
             else if (Pendu == 5)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu5.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
@@ -150,6 +160,7 @@ namespace ProjetPendu
             }
             else if (Pendu == 4)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu4.txt"); 
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
@@ -157,6 +168,7 @@ namespace ProjetPendu
             }
             else if (Pendu == 3)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu3.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
@@ -164,12 +176,14 @@ namespace ProjetPendu
             }
             else if (Pendu == 2)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu2.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);
             }
             else if (Pendu == 1)
             {
+                //Récupere le fichier texte écrit au préalable
                 string text = System.IO.File.ReadAllText(@"..\..\..\Tools\DessinPendu1.txt");
                 // Affiche le contenu du fichier
                 System.Console.WriteLine(text);

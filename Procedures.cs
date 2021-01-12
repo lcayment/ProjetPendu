@@ -98,9 +98,6 @@ namespace ProjetPendu
             }
 
         }
-
-<<<<<<< HEAD
-=======
         public static void AfficherPendu (ref int Pendu)
         {
             if (Pendu ==10)
@@ -172,8 +169,5 @@ namespace ProjetPendu
             }
         }
 
-
-
->>>>>>> 579acf5d0232456de59ec6dbcf6c7ee8b768d246
     }
 }

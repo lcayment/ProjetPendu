@@ -4,7 +4,16 @@ using System.Text;
 
 namespace ProjetPendu
 {
-    /* THIS CLASS CONTAINS ALL PROCEDURES */
+    /*============================================================= THIS CLASS CONTAINS ALL PROCEDURES================================================================= 
+     *                  1. AfficherRegles (Lig. 18)
+     *                  2. AfficherMotADeviner (Lig. 42)
+     *                  3. PartieAbandonnee (Lig. 58)
+     *                  4. PartiePerdue (Lig. 88)
+     *                  5. AfficherPendu (Lig. 118)   
+     */
+
+
+
     class Procedures
     {
         public static void AfficherRegles()
@@ -33,7 +42,7 @@ namespace ProjetPendu
         public static void AfficherMotADeviner(char[] MotTrouve)
         {
             /* Nom : AfficherMotADeviner
-             * Objectif :  A chaque tour, affiche le mot à deviner avec la nouvelle lettre donnée par l'utilisateur (Lettre)
+             * Objectif :  A chaque tour, affiche le mot à deviner avec la nouvelle lettre donnée par l'utilisateur (Lettre) qui a été vérifié par VerifierLettre()
              * Paramètre(s) d'entrée : char [] MotTrouve correspond au mot en l'état actuelle (avec les lettres devinées et les underscore)
              * Variable de retour : void
             */
